@@ -10,31 +10,36 @@ on:
 jobs:
   build-and-push:
     runs-on: self-hosted
+
     permissions:
       contents: read
       packages: write
-    
+
     steps:
       - name: Check out code repository
         uses: actions/checkout@v4
-      
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      
+
       - name: Extract metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/${{ github.repository_owner }}/hello-world-nginx
+          # Zorg dat de volledige image path lowercase is
+          images: ghcr.io/${{ toLower(github.repository_owner) }}/hello-world-nginx
           tags: |
             type=ref,event=branch
             type=sha
             type=raw,value=latest
-      
+
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
@@ -42,17 +47,25 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-      
+
+      - name: Show tags (debug)
+        run: echo "${{ steps.meta.outputs.tags }}"
+
       - name: Run Docker container
         run: |
-          docker run -d -p 8080:80 --name test-nginx ghcr.io/${{ github.repository_owner }}/hello-world-nginx:latest
-      
+          docker rm -f test-nginx 2>/dev/null || true
+          IMAGE_TAG=$(echo "${{ steps.meta.outputs.tags }}" | grep ':latest$' | head -n 1)
+          # Fallback als 'latest' er niet tussen staat
+          if [ -z "$IMAGE_TAG" ]; then IMAGE_TAG=$(echo "${{ steps.meta.outputs.tags }}" | head -n 1); fi
+          echo "Running $IMAGE_TAG"
+          docker run -d -p 8080:80 --name test-nginx "$IMAGE_TAG"
+
       - name: Test nginx is running
         run: |
           sleep 5
-          curl http://localhost:8080
-      
+          curl -f http://localhost:8080
+
       - name: Stop and remove container
+        if: always()
         run: |
-          docker stop test-nginx
-          docker rm test-nginx
+          docker rm -f test-nginx || true
