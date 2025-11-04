@@ -11,7 +11,7 @@ on:
 
 jobs:
   docker-build-and-push:
-    runs-on: ubuntu-24.04
+    runs-on: self-hosted
     
     steps:
       - name: Check out code repository
@@ -29,4 +29,4 @@ jobs:
             hello-world-nginx:${{ github.ref_name }}
             hello-world-nginx:${{ github.sha }}
             hello-world-nginx:latest
-          load: true          
+          load: true
