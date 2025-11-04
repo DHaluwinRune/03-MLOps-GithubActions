@@ -3,12 +3,14 @@ name: My First Workflow
 on:
   workflow_dispatch:
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  build-and-test:
+  docker-build-and-push:
     runs-on: ubuntu-24.04
     
     steps:
@@ -18,32 +20,13 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       
-      - name: Extract metadata
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: hello-world-nginx
-          tags: |
-            type=ref,event=branch
-            type=sha
-      
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
           context: .
-          push: false
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-      
-      - name: Run Docker container
-        run: |
-          IMAGE_TAG=$(echo "${{ steps.meta.outputs.tags }}" | head -n 1)
-          docker run -d -p 8080:80 --name test-nginx $IMAGE_TAG
-      
-      - name: Test nginx is running
-        run: |
-          sleep 5
-          curl http://localhost:8080
-      
-      - name: Stop container
-        run: docker stop test-nginx
+          push: false  # Nog niet pushen, eerst lokaal testen
+          tags: |
+            hello-world-nginx:${{ github.ref_name }}
+            hello-world-nginx:${{ github.sha }}
+            hello-world-nginx:latest
+          load: true          
