@@ -1,0 +1,12 @@
+﻿{
+  "repositoryName": "DHaluwinRune/03-MLOps-GithubActions",
+  "pipelineDirectory": "03-MLOps-GithubActions",
+  "workspaceDirectory": "03-MLOps-GithubActions\\03-MLOps-GithubActions",
+  "repositories": {
+    "DHaluwinRune/03-MLOps-GithubActions": {
+      "repositoryPath": "03-MLOps-GithubActions\\03-MLOps-GithubActions",
+      "lastRunOn": "11/04/2025 20:23:32 +01:00"
+    }
+  },
+  "lastRunOn": "11/04/2025 20:50:05 +01:00"
+}
