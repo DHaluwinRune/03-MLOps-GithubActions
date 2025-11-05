@@ -44,4 +44,4 @@ jobs:
       # Controleer de pods in je namespace
       - name: Check pods in namespace
         run: |
-          kubectl get pods -n dhauwin
+          kubectl get pods -n rune
