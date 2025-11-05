@@ -29,7 +29,7 @@ jobs:
       - name: Update pod name with random ID
         shell: powershell
         run: |
-          $file = "pod.yaml"
+          $file = "kubernetes-pod.yaml"
           $content = Get-Content $file
           $random_id = "${{ steps.random-id.outputs.random_id }}"
           $content = $content -replace "PLACEHOLDER", $random_id
@@ -39,7 +39,7 @@ jobs:
       # Deploy de pod naar Kubernetes
       - name: Apply Kubernetes Pod
         run: |
-          kubectl apply -f pod.yaml
+          kubectl apply -f kubernetes-pod.yaml
 
       # Controleer de pods in je namespace
       - name: Check pods in namespace
