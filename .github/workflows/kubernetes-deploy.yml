@@ -3,37 +3,51 @@ name: Kubernetes Deployment
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   deploy-pod:
     runs-on: self-hosted
-    
+
     steps:
       - name: Check out code repository
         uses: actions/checkout@v4
-      
-      - name: Generate random pod name
+        with:
+          # voorkomt agressieve clean errors/warnings op Windows
+          clean: false
+          fetch-depth: 0
+          submodules: false
+
+      - name: Generate random pod name (PowerShell)
+        shell: pwsh
+        run: |
+          $epoch = [DateTimeOffset]::UtcNow.ToUnixTimeSeconds()
+          "POD_NAME=mypod-$epoch" >> $env:GITHUB_OUTPUT
         id: random
-        run: echo "POD_NAME=mypod-$(date +%s)" >> $GITHUB_OUTPUT
-      
-      - name: Update pod YAML with random name
+
+      - name: Update pod YAML with random name (PowerShell)
+        shell: pwsh
         run: |
-          sed -i 's/PLACEHOLDER/${{ steps.random.outputs.POD_NAME }}/g' kubernetes-pod.yaml
-      
+          (Get-Content kubernetes-pod.yaml) -replace 'PLACEHOLDER', '${{ steps.random.outputs.POD_NAME }}' |
+            Set-Content kubernetes-pod.yaml
+
+      # Optioneel: expliciet kubeconfig meegeven als kubectl je cluster niet vindt
       - name: Deploy pod to Kubernetes
+        shell: pwsh
         run: |
-          kubectl apply -f kubernetes-pod.yaml
-      
+          kubectl --kubeconfig "$env:USERPROFILE\.kube\config" apply -f kubernetes-pod.yaml
+
       - name: Wait for pod to be ready
+        shell: pwsh
         run: |
-          kubectl wait --for=condition=Ready pod/${{ steps.random.outputs.POD_NAME }} -n rune --timeout=60s
-      
+          kubectl --kubeconfig "$env:USERPROFILE\.kube\config" wait --for=condition=Ready pod/${{ steps.random.outputs.POD_NAME }} -n rune --timeout=60s
+
       - name: Check pods in namespace
+        shell: pwsh
         run: |
-          kubectl get pods -n rune
-      
+          kubectl --kubeconfig "$env:USERPROFILE\.kube\config" get pods -n rune
+
       - name: Get pod details
+        shell: pwsh
         run: |
-          kubectl describe pod/${{ steps.random.outputs.POD_NAME }} -n rune
+          kubectl --kubeconfig "$env:USERPROFILE\.kube\config" describe pod/${{ steps.random.outputs.POD_NAME }} -n rune
