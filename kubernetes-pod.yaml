@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod-PLACEHOLDER
+  namespace: rune
+  labels:
+    name: mypod
+    app: hello-world
+spec:
+  containers:
+  - name: mypod
+    image: rancher/hello-world
+    ports:
+    - containerPort: 80

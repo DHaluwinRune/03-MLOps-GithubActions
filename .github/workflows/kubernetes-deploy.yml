@@ -1,0 +1,39 @@
+name: Kubernetes Deployment
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-pod:
+    runs-on: self-hosted
+    
+    steps:
+      - name: Check out code repository
+        uses: actions/checkout@v4
+      
+      - name: Generate random pod name
+        id: random
+        run: echo "POD_NAME=mypod-$(date +%s)" >> $GITHUB_OUTPUT
+      
+      - name: Update pod YAML with random name
+        run: |
+          sed -i 's/PLACEHOLDER/${{ steps.random.outputs.POD_NAME }}/g' kubernetes-pod.yaml
+      
+      - name: Deploy pod to Kubernetes
+        run: |
+          kubectl apply -f kubernetes-pod.yaml
+      
+      - name: Wait for pod to be ready
+        run: |
+          kubectl wait --for=condition=Ready pod/${{ steps.random.outputs.POD_NAME }} -n rune --timeout=60s
+      
+      - name: Check pods in namespace
+        run: |
+          kubectl get pods -n rune
+      
+      - name: Get pod details
+        run: |
+          kubectl describe pod/${{ steps.random.outputs.POD_NAME }} -n rune
