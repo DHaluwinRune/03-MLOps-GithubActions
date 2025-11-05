@@ -5,6 +5,10 @@ on:
   push:
     branches: [ main ]
 
+defaults:
+  run:
+    shell: powershell
+
 jobs:
   deploy-pod:
     runs-on: self-hosted
@@ -13,41 +17,34 @@ jobs:
       - name: Check out code repository
         uses: actions/checkout@v4
         with:
-          # voorkomt agressieve clean errors/warnings op Windows
           clean: false
           fetch-depth: 0
           submodules: false
 
-      - name: Generate random pod name (PowerShell)
-        shell: pwsh
+      - name: Generate random pod name (Windows PowerShell)
+        id: random
         run: |
           $epoch = [DateTimeOffset]::UtcNow.ToUnixTimeSeconds()
-          "POD_NAME=mypod-$epoch" >> $env:GITHUB_OUTPUT
-        id: random
+          "POD_NAME=mypod-$epoch" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
 
-      - name: Update pod YAML with random name (PowerShell)
-        shell: pwsh
+      - name: Update pod YAML with random name
         run: |
-          (Get-Content kubernetes-pod.yaml) -replace 'PLACEHOLDER', '${{ steps.random.outputs.POD_NAME }}' |
-            Set-Content kubernetes-pod.yaml
+          $content = Get-Content -Raw -Path "kubernetes-pod.yaml"
+          $content = $content -replace 'PLACEHOLDER', '${{ steps.random.outputs.POD_NAME }}'
+          $content | Set-Content -Path "kubernetes-pod.yaml" -Encoding utf8 -NoNewline
 
-      # Optioneel: expliciet kubeconfig meegeven als kubectl je cluster niet vindt
       - name: Deploy pod to Kubernetes
-        shell: pwsh
         run: |
           kubectl --kubeconfig "$env:USERPROFILE\.kube\config" apply -f kubernetes-pod.yaml
 
       - name: Wait for pod to be ready
-        shell: pwsh
         run: |
           kubectl --kubeconfig "$env:USERPROFILE\.kube\config" wait --for=condition=Ready pod/${{ steps.random.outputs.POD_NAME }} -n rune --timeout=60s
 
       - name: Check pods in namespace
-        shell: pwsh
         run: |
           kubectl --kubeconfig "$env:USERPROFILE\.kube\config" get pods -n rune
 
       - name: Get pod details
-        shell: pwsh
         run: |
           kubectl --kubeconfig "$env:USERPROFILE\.kube\config" describe pod/${{ steps.random.outputs.POD_NAME }} -n rune
