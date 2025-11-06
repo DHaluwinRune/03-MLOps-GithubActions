@@ -16,10 +16,11 @@ jobs:
       
       - name: Generate random pod name
         id: random
-        shell: pwsh
+        shell: powershell
         run: |
-          $now = Get-Date -UFormat %s
-          echo "POD_NAME=mypod-$now" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          $now = [DateTimeOffset]::UtcNow.ToUnixTimeSeconds()
+          Add-Content -Path $env:GITHUB_OUTPUT -Value "POD_NAME=mypod-$now"
+
 
       
       - name: Update pod YAML with random name
