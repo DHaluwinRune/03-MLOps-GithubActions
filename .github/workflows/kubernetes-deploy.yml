@@ -20,7 +20,7 @@ jobs:
         run: |
           $now = [DateTimeOffset]::UtcNow.ToUnixTimeSeconds()
           Add-Content -Path $env:GITHUB_OUTPUT -Value "POD_NAME=mypod-$now"
-
+      
       - name: Update pod YAML with random name
         shell: powershell
         run: |
@@ -28,7 +28,6 @@ jobs:
           $old = 'PLACEHOLDER'
           $new = '${{ steps.random.outputs.POD_NAME }}'
           (Get-Content $file) -replace $old, $new | Set-Content $file
-
       
       - name: Deploy pod to Kubernetes
         run: |
@@ -67,3 +66,32 @@ jobs:
       - name: Restart deployment to pull latest image
         run: |
           kubectl rollout restart deployment/hello-world-deployment -n rune
+  
+  deploy-with-helm:
+    runs-on: self-hosted
+    needs: deploy-application
+    
+    steps:
+      - name: Check out code repository
+        uses: actions/checkout@v4
+      
+      - name: Create namespace if not exists
+        run: |
+          kubectl create namespace rune --dry-run=client -o yaml | kubectl apply -f -
+      
+      - name: Deploy using Helm
+        run: |
+          helm upgrade --install hello-world-nginx ./helm-chart \
+            --namespace rune \
+            --create-namespace \
+            --set image.tag=latest \
+            --wait \
+            --timeout 2m
+      
+      - name: Check Helm release
+        run: |
+          helm list -n rune
+      
+      - name: Check deployed resources
+        run: |
+          kubectl get all -n rune
