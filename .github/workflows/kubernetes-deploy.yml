@@ -21,11 +21,14 @@ jobs:
           $now = [DateTimeOffset]::UtcNow.ToUnixTimeSeconds()
           Add-Content -Path $env:GITHUB_OUTPUT -Value "POD_NAME=mypod-$now"
 
-
-      
       - name: Update pod YAML with random name
+        shell: powershell
         run: |
-          sed -i 's/PLACEHOLDER/${{ steps.random.outputs.POD_NAME }}/g' kubernetes-pod.yaml
+          $file = 'kubernetes-pod.yaml'
+          $old = 'PLACEHOLDER'
+          $new = '${{ steps.random.outputs.POD_NAME }}'
+          (Get-Content $file) -replace $old, $new | Set-Content $file
+
       
       - name: Deploy pod to Kubernetes
         run: |

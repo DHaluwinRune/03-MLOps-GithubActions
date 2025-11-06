@@ -1,0 +1,3500 @@
+[2025-11-06 10:17:37Z INFO HostContext] No proxy settings were found based on environmental variables (http_proxy/https_proxy/HTTP_PROXY/HTTPS_PROXY)
+[2025-11-06 10:17:37Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:37Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:37Z INFO HostContext] Well known config file 'Credentials': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\.credentials'
+[2025-11-06 10:17:37Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:37Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:37Z INFO HostContext] Well known config file 'Runner': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\.runner'
+[2025-11-06 10:17:37Z INFO Worker] Version: 2.329.0
+[2025-11-06 10:17:37Z INFO Worker] Commit: c76c59996c8fa32e989164a5a695efb12608ae5a
+[2025-11-06 10:17:37Z INFO Worker] Culture: nl-BE
+[2025-11-06 10:17:37Z INFO Worker] UI Culture: nl-NL
+[2025-11-06 10:17:37Z INFO Worker] Waiting to receive the job message from the channel.
+[2025-11-06 10:17:37Z INFO ProcessChannel] Receiving message of length 21261, with hash '0dcdd3b8c2cc1f65e4409cc51f5fe627886e029a0a181bfdff7eabc5a44bc6a1'
+[2025-11-06 10:17:37Z INFO Worker] Message received.
+[2025-11-06 10:17:38Z INFO Worker] Job message:
+ {
+  "fileTable": [
+    ".github/workflows/kubernetes-deploy.yml"
+  ],
+  "mask": [
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    }
+  ],
+  "steps": [
+    {
+      "type": "action",
+      "reference": {
+        "type": "repository",
+        "name": "actions/checkout",
+        "ref": "v4",
+        "repositoryType": "GitHub"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 14,
+        "col": 15,
+        "lit": "Check out code repository"
+      },
+      "contextName": "__actions_checkout",
+      "condition": "success()",
+      "id": "e7bca269-4d54-4758-87c0-0d26e170b234",
+      "name": "__actions_checkout"
+    },
+    {
+      "type": "action",
+      "reference": {
+        "type": "script"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 17,
+        "col": 15,
+        "lit": "Generate random pod name"
+      },
+      "contextName": "random",
+      "inputs": {
+        "type": 2,
+        "map": [
+          {
+            "key": "script",
+            "value": {
+              "type": 0,
+              "file": 1,
+              "line": 20,
+              "col": 14,
+              "lit": "$now = [DateTimeOffset]::UtcNow.ToUnixTimeSeconds()\nAdd-Content -Path $env:GITHUB_OUTPUT -Value \"POD_NAME=mypod-$now\"\n"
+            }
+          },
+          {
+            "key": "shell",
+            "value": {
+              "type": 0,
+              "file": 1,
+              "line": 19,
+              "col": 16,
+              "lit": "powershell"
+            }
+          }
+        ]
+      },
+      "condition": "success()",
+      "id": "bc378e0f-3ea3-4a11-b5f4-5ee8b7ec2ab7",
+      "name": "random"
+    },
+    {
+      "type": "action",
+      "reference": {
+        "type": "script"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 26,
+        "col": 15,
+        "lit": "Update pod YAML with random name"
+      },
+      "contextName": "__run",
+      "inputs": {
+        "type": 2,
+        "map": [
+          {
+            "key": "script",
+            "value": {
+              "type": 3,
+              "file": 1,
+              "line": 27,
+              "col": 14,
+              "expr": "format('sed -i ''s/PLACEHOLDER/{0}/g'' kubernetes-pod.yaml\n', steps.random.outputs.POD_NAME)"
+            }
+          }
+        ]
+      },
+      "condition": "success()",
+      "id": "565040c8-d8d1-4922-b2d9-35d3fd38c9c6",
+      "name": "__run"
+    },
+    {
+      "type": "action",
+      "reference": {
+        "type": "script"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 30,
+        "col": 15,
+        "lit": "Deploy pod to Kubernetes"
+      },
+      "contextName": "__run_2",
+      "inputs": {
+        "type": 2,
+        "map": [
+          {
+            "key": "script",
+            "value": {
+              "type": 0,
+              "file": 1,
+              "line": 31,
+              "col": 14,
+              "lit": "kubectl apply -f kubernetes-pod.yaml\n"
+            }
+          }
+        ]
+      },
+      "condition": "success()",
+      "id": "94ac9ec1-fec9-4901-964d-5c829abe2e30",
+      "name": "__run_2"
+    },
+    {
+      "type": "action",
+      "reference": {
+        "type": "script"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 34,
+        "col": 15,
+        "lit": "Check pods in namespace"
+      },
+      "contextName": "__run_3",
+      "inputs": {
+        "type": 2,
+        "map": [
+          {
+            "key": "script",
+            "value": {
+              "type": 0,
+              "file": 1,
+              "line": 35,
+              "col": 14,
+              "lit": "kubectl get pods -n rune\n"
+            }
+          }
+        ]
+      },
+      "condition": "success()",
+      "id": "18bf9d86-fe40-4553-b5b8-bc3f5d0912b1",
+      "name": "__run_3"
+    }
+  ],
+  "variables": {
+    "Actions.EnableHttpRedirects": {
+      "value": "true"
+    },
+    "DistributedTask.AddWarningToNode12Action": {
+      "value": "true"
+    },
+    "DistributedTask.AddWarningToNode16Action": {
+      "value": "true"
+    },
+    "DistributedTask.AllowRunnerContainerHooks": {
+      "value": "true"
+    },
+    "DistributedTask.DeprecateStepOutputCommands": {
+      "value": "true"
+    },
+    "DistributedTask.DetailUntarFailure": {
+      "value": "true"
+    },
+    "DistributedTask.EnableCompositeActions": {
+      "value": "true"
+    },
+    "DistributedTask.EnableJobServerQueueTelemetry": {
+      "value": "true"
+    },
+    "DistributedTask.EnhancedAnnotations": {
+      "value": "true"
+    },
+    "DistributedTask.ForceGithubJavascriptActionsToNode16": {
+      "value": "true"
+    },
+    "DistributedTask.ForceGithubJavascriptActionsToNode20": {
+      "value": "true"
+    },
+    "DistributedTask.LogTemplateErrorsAsDebugMessages": {
+      "value": "true"
+    },
+    "DistributedTask.MarkJobAsFailedOnWorkerCrash": {
+      "value": "true"
+    },
+    "DistributedTask.NewActionMetadata": {
+      "value": "true"
+    },
+    "DistributedTask.UploadStepSummary": {
+      "value": "true"
+    },
+    "DistributedTask.UseActionArchiveCache": {
+      "value": "true"
+    },
+    "DistributedTask.UseWhich2": {
+      "value": "true"
+    },
+    "RunService.FixEmbeddedIssues": {
+      "value": "true"
+    },
+    "actions_add_check_run_id_to_job_context": {
+      "value": "true"
+    },
+    "actions_container_action_runner_temp": {
+      "value": "false"
+    },
+    "actions_display_helpful_actions_download_errors": {
+      "value": "true"
+    },
+    "actions_skip_retry_complete_job_upon_known_errors": {
+      "value": "true"
+    },
+    "actions_uses_cache_service_v2": {
+      "value": "true"
+    },
+    "github_token": {
+      "value": "***",
+      "isSecret": true
+    },
+    "system.from_run_service": {
+      "value": "true"
+    },
+    "system.github.job": {
+      "value": "deploy-pod"
+    },
+    "system.github.launch_endpoint": {
+      "value": "https://launch.actions.githubusercontent.com"
+    },
+    "system.github.results_endpoint": {
+      "value": "https://results-receiver.actions.githubusercontent.com/"
+    },
+    "system.github.results_upload_with_sdk": {
+      "value": "true"
+    },
+    "system.github.token": {
+      "value": "***",
+      "isSecret": true
+    },
+    "system.github.token.permissions": {
+      "value": "{\"Actions\":\"write\",\"Attestations\":\"write\",\"Checks\":\"write\",\"Contents\":\"write\",\"Deployments\":\"write\",\"Discussions\":\"write\",\"Issues\":\"write\",\"Metadata\":\"read\",\"Models\":\"read\",\"Packages\":\"write\",\"Pages\":\"write\",\"PullRequests\":\"write\",\"RepositoryProjects\":\"write\",\"SecurityEvents\":\"write\",\"Statuses\":\"write\"}"
+    },
+    "system.orchestrationId": {
+      "value": "da12793c-30ed-4e55-b594-d149b8237fac.deploy-pod.__default"
+    },
+    "system.phaseDisplayName": {
+      "value": "deploy-pod"
+    },
+    "system.runner.lowdiskspacethreshold": {
+      "value": "100"
+    },
+    "system.runnerEnvironment": {
+      "value": "self-hosted"
+    },
+    "system.runnerGroupName": {
+      "value": "Default"
+    }
+  },
+  "messageType": "RunnerJobRequest",
+  "plan": {
+    "scopeIdentifier": "00000000-0000-0000-0000-000000000000",
+    "planType": "actions",
+    "version": 0,
+    "planId": "da12793c-30ed-4e55-b594-d149b8237fac",
+    "planGroup": null,
+    "artifactUri": null,
+    "artifactLocation": null,
+    "definition": null,
+    "owner": null
+  },
+  "timeline": {
+    "id": "da12793c-30ed-4e55-b594-d149b8237fac",
+    "changeId": 0,
+    "location": null
+  },
+  "jobId": "f4401d9b-0e44-5243-a44a-052a7bd78e1c",
+  "jobDisplayName": "deploy-pod",
+  "jobName": "__default",
+  "requestId": 0,
+  "lockedUntil": "0001-01-01T00:00:00",
+  "resources": {
+    "endpoints": [
+      {
+        "data": {
+          "ServerId": "",
+          "ServerName": "",
+          "CacheServerUrl": "https://artifactcache.actions.githubusercontent.com/WiUpu9Pnkv3MKD58V5oxbZ8ketpBxegbuMcs38JyDyHbFZtKqd/",
+          "FeedStreamUrl": "wss://results-receiver.actions.githubusercontent.com/_ws/ingest.sock",
+          "ResultsServiceUrl": "https://results-receiver.actions.githubusercontent.com/",
+          "PipelinesServiceUrl": "https://pipelinesghubeus25.actions.githubusercontent.com/WiUpu9Pnkv3MKD58V5oxbZ8ketpBxegbuMcs38JyDyHbFZtKqd/",
+          "GenerateIdTokenUrl": ""
+        },
+        "name": "SystemVssConnection",
+        "url": "https://run-actions-2-azure-eastus.actions.githubusercontent.com/48/",
+        "authorization": {
+          "parameters": {
+            "AccessToken": "***"
+          },
+          "scheme": "OAuth"
+        },
+        "isShared": false,
+        "isReady": true
+      }
+    ]
+  },
+  "contextData": {
+    "github": {
+      "t": 2,
+      "d": [
+        {
+          "k": "ref",
+          "v": "refs/heads/main"
+        },
+        {
+          "k": "sha",
+          "v": "b5c7aeb3676a7c4e98476c66742f346e26a6c094"
+        },
+        {
+          "k": "repository",
+          "v": "DHaluwinRune/03-MLOps-GithubActions"
+        },
+        {
+          "k": "repository_owner",
+          "v": "DHaluwinRune"
+        },
+        {
+          "k": "repository_owner_id",
+          "v": "145713662"
+        },
+        {
+          "k": "repositoryUrl",
+          "v": "git://github.com/DHaluwinRune/03-MLOps-GithubActions.git"
+        },
+        {
+          "k": "run_id",
+          "v": "19132297320"
+        },
+        {
+          "k": "run_number",
+          "v": "10"
+        },
+        {
+          "k": "retention_days",
+          "v": "90"
+        },
+        {
+          "k": "run_attempt",
+          "v": "1"
+        },
+        {
+          "k": "artifact_cache_size_limit",
+          "v": "10"
+        },
+        {
+          "k": "repository_visibility",
+          "v": "private"
+        },
+        {
+          "k": "actor_id",
+          "v": "145713662"
+        },
+        {
+          "k": "actor",
+          "v": "DHaluwinRune"
+        },
+        {
+          "k": "workflow",
+          "v": "Kubernetes Deployment"
+        },
+        {
+          "k": "head_ref",
+          "v": ""
+        },
+        {
+          "k": "base_ref",
+          "v": ""
+        },
+        {
+          "k": "event_name",
+          "v": "push"
+        },
+        {
+          "k": "server_url",
+          "v": "https://github.com"
+        },
+        {
+          "k": "api_url",
+          "v": "https://api.github.com"
+        },
+        {
+          "k": "graphql_url",
+          "v": "https://api.github.com/graphql"
+        },
+        {
+          "k": "ref_name",
+          "v": "main"
+        },
+        {
+          "k": "ref_protected",
+          "v": false
+        },
+        {
+          "k": "ref_type",
+          "v": "branch"
+        },
+        {
+          "k": "secret_source",
+          "v": "Actions"
+        },
+        {
+          "k": "event",
+          "v": {
+            "t": 2,
+            "d": [
+              {
+                "k": "after",
+                "v": "b5c7aeb3676a7c4e98476c66742f346e26a6c094"
+              },
+              {
+                "k": "base_ref",
+                "v": null
+              },
+              {
+                "k": "before",
+                "v": "137244f59a452f2488d6476e9433b174e7a00822"
+              },
+              {
+                "k": "commits",
+                "v": {
+                  "t": 1,
+                  "a": [
+                    {
+                      "t": 2,
+                      "d": [
+                        {
+                          "k": "author",
+                          "v": {
+                            "t": 2,
+                            "d": [
+                              {
+                                "k": "email",
+                                "v": "rune.dhaluwin@student.howest.be"
+                              },
+                              {
+                                "k": "name",
+                                "v": "D'HaluwinRune"
+                              },
+                              {
+                                "k": "username",
+                                "v": "DHaluwinRune"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "k": "committer",
+                          "v": {
+                            "t": 2,
+                            "d": [
+                              {
+                                "k": "email",
+                                "v": "rune.dhaluwin@student.howest.be"
+                              },
+                              {
+                                "k": "name",
+                                "v": "D'HaluwinRune"
+                              },
+                              {
+                                "k": "username",
+                                "v": "DHaluwinRune"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "k": "distinct",
+                          "v": true
+                        },
+                        {
+                          "k": "id",
+                          "v": "b5c7aeb3676a7c4e98476c66742f346e26a6c094"
+                        },
+                        {
+                          "k": "message",
+                          "v": "pls fix"
+                        },
+                        {
+                          "k": "timestamp",
+                          "v": "2025-11-06T11:17:05+01:00"
+                        },
+                        {
+                          "k": "tree_id",
+                          "v": "41a59adea04fdac32ce75844a681d15b85382736"
+                        },
+                        {
+                          "k": "url",
+                          "v": "https://github.com/DHaluwinRune/03-MLOps-GithubActions/commit/b5c7aeb3676a7c4e98476c66742f346e26a6c094"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "compare",
+                "v": "https://github.com/DHaluwinRune/03-MLOps-GithubActions/compare/137244f59a45...b5c7aeb3676a"
+              },
+              {
+                "k": "created",
+                "v": false
+              },
+              {
+                "k": "deleted",
+                "v": false
+              },
+              {
+                "k": "forced",
+                "v": false
+              },
+              {
+                "k": "head_commit",
+                "v": {
+                  "t": 2,
+                  "d": [
+                    {
+                      "k": "author",
+                      "v": {
+                        "t": 2,
+                        "d": [
+                          {
+                            "k": "email",
+                            "v": "rune.dhaluwin@student.howest.be"
+                          },
+                          {
+                            "k": "name",
+                            "v": "D'HaluwinRune"
+                          },
+                          {
+                            "k": "username",
+                            "v": "DHaluwinRune"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "k": "committer",
+                      "v": {
+                        "t": 2,
+                        "d": [
+                          {
+                            "k": "email",
+                            "v": "rune.dhaluwin@student.howest.be"
+                          },
+                          {
+                            "k": "name",
+                            "v": "D'HaluwinRune"
+                          },
+                          {
+                            "k": "username",
+                            "v": "DHaluwinRune"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "k": "distinct",
+                      "v": true
+                    },
+                    {
+                      "k": "id",
+                      "v": "b5c7aeb3676a7c4e98476c66742f346e26a6c094"
+                    },
+                    {
+                      "k": "message",
+                      "v": "pls fix"
+                    },
+                    {
+                      "k": "timestamp",
+                      "v": "2025-11-06T11:17:05+01:00"
+                    },
+                    {
+                      "k": "tree_id",
+                      "v": "41a59adea04fdac32ce75844a681d15b85382736"
+                    },
+                    {
+                      "k": "url",
+                      "v": "https://github.com/DHaluwinRune/03-MLOps-GithubActions/commit/b5c7aeb3676a7c4e98476c66742f346e26a6c094"
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "pusher",
+                "v": {
+                  "t": 2,
+                  "d": [
+                    {
+                      "k": "email",
+                      "v": "145713662+DHaluwinRune@users.noreply.github.com"
+                    },
+                    {
+                      "k": "name",
+                      "v": "DHaluwinRune"
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "ref",
+                "v": "refs/heads/main"
+              },
+              {
+                "k": "repository",
+                "v": {
+                  "t": 2,
+                  "d": [
+                    {
+                      "k": "allow_forking",
+                      "v": true
+                    },
+                    {
+                      "k": "archive_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/{archive_format}{/ref}"
+                    },
+                    {
+                      "k": "archived",
+                      "v": false
+                    },
+                    {
+                      "k": "assignees_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/assignees{/user}"
+                    },
+                    {
+                      "k": "blobs_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/git/blobs{/sha}"
+                    },
+                    {
+                      "k": "branches_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/branches{/branch}"
+                    },
+                    {
+                      "k": "clone_url",
+                      "v": "https://github.com/DHaluwinRune/03-MLOps-GithubActions.git"
+                    },
+                    {
+                      "k": "collaborators_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/collaborators{/collaborator}"
+                    },
+                    {
+                      "k": "comments_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/comments{/number}"
+                    },
+                    {
+                      "k": "commits_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/commits{/sha}"
+                    },
+                    {
+                      "k": "compare_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/compare/{base}...{head}"
+                    },
+                    {
+                      "k": "contents_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/contents/{+path}"
+                    },
+                    {
+                      "k": "contributors_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/contributors"
+                    },
+                    {
+                      "k": "created_at",
+                      "v": 1762271145.0
+                    },
+                    {
+                      "k": "default_branch",
+                      "v": "main"
+                    },
+                    {
+                      "k": "deployments_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/deployments"
+                    },
+                    {
+                      "k": "description",
+                      "v": null
+                    },
+                    {
+                      "k": "disabled",
+                      "v": false
+                    },
+                    {
+                      "k": "downloads_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/downloads"
+                    },
+                    {
+                      "k": "events_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/events"
+                    },
+                    {
+                      "k": "fork",
+                      "v": false
+                    },
+                    {
+                      "k": "forks",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "forks_count",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "forks_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/forks"
+                    },
+                    {
+                      "k": "full_name",
+                      "v": "DHaluwinRune/03-MLOps-GithubActions"
+                    },
+                    {
+                      "k": "git_commits_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/git/commits{/sha}"
+                    },
+                    {
+                      "k": "git_refs_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/git/refs{/sha}"
+                    },
+                    {
+                      "k": "git_tags_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/git/tags{/sha}"
+                    },
+                    {
+                      "k": "git_url",
+                      "v": "git://github.com/DHaluwinRune/03-MLOps-GithubActions.git"
+                    },
+                    {
+                      "k": "has_discussions",
+                      "v": false
+                    },
+                    {
+                      "k": "has_downloads",
+                      "v": true
+                    },
+                    {
+                      "k": "has_issues",
+                      "v": true
+                    },
+                    {
+                      "k": "has_pages",
+                      "v": false
+                    },
+                    {
+                      "k": "has_projects",
+                      "v": true
+                    },
+                    {
+                      "k": "has_wiki",
+                      "v": true
+                    },
+                    {
+                      "k": "homepage",
+                      "v": null
+                    },
+                    {
+                      "k": "hooks_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/hooks"
+                    },
+                    {
+                      "k": "html_url",
+                      "v": "https://github.com/DHaluwinRune/03-MLOps-GithubActions"
+                    },
+                    {
+                      "k": "id",
+                      "v": 1089629187.0
+                    },
+                    {
+                      "k": "is_template",
+                      "v": false
+                    },
+                    {
+                      "k": "issue_comment_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/issues/comments{/number}"
+                    },
+                    {
+                      "k": "issue_events_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/issues/events{/number}"
+                    },
+                    {
+                      "k": "issues_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/issues{/number}"
+                    },
+                    {
+                      "k": "keys_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/keys{/key_id}"
+                    },
+                    {
+                      "k": "labels_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/labels{/name}"
+                    },
+                    {
+                      "k": "language",
+                      "v": "JavaScript"
+                    },
+                    {
+                      "k": "languages_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/languages"
+                    },
+                    {
+                      "k": "license",
+                      "v": null
+                    },
+                    {
+                      "k": "master_branch",
+                      "v": "main"
+                    },
+                    {
+                      "k": "merges_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/merges"
+                    },
+                    {
+                      "k": "milestones_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/milestones{/number}"
+                    },
+                    {
+                      "k": "mirror_url",
+                      "v": null
+                    },
+                    {
+                      "k": "name",
+                      "v": "03-MLOps-GithubActions"
+                    },
+                    {
+                      "k": "node_id",
+                      "v": "R_kgDOQPJsAw"
+                    },
+                    {
+                      "k": "notifications_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/notifications{?since,all,participating}"
+                    },
+                    {
+                      "k": "open_issues",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "open_issues_count",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "owner",
+                      "v": {
+                        "t": 2,
+                        "d": [
+                          {
+                            "k": "avatar_url",
+                            "v": "https://avatars.githubusercontent.com/u/145713662?v=4"
+                          },
+                          {
+                            "k": "email",
+                            "v": "145713662+DHaluwinRune@users.noreply.github.com"
+                          },
+                          {
+                            "k": "events_url",
+                            "v": "https://api.github.com/users/DHaluwinRune/events{/privacy}"
+                          },
+                          {
+                            "k": "followers_url",
+                            "v": "https://api.github.com/users/DHaluwinRune/followers"
+                          },
+                          {
+                            "k": "following_url",
+                            "v": "https://api.github.com/users/DHaluwinRune/following{/other_user}"
+                          },
+                          {
+                            "k": "gists_url",
+                            "v": "https://api.github.com/users/DHaluwinRune/gists{/gist_id}"
+                          },
+                          {
+                            "k": "gravatar_id",
+                            "v": ""
+                          },
+                          {
+                            "k": "html_url",
+                            "v": "https://github.com/DHaluwinRune"
+                          },
+                          {
+                            "k": "id",
+                            "v": 145713662.0
+                          },
+                          {
+                            "k": "login",
+                            "v": "DHaluwinRune"
+                          },
+                          {
+                            "k": "name",
+                            "v": "DHaluwinRune"
+                          },
+                          {
+                            "k": "node_id",
+                            "v": "U_kgDOCK9p_g"
+                          },
+                          {
+                            "k": "organizations_url",
+                            "v": "https://api.github.com/users/DHaluwinRune/orgs"
+                          },
+                          {
+                            "k": "received_events_url",
+                            "v": "https://api.github.com/users/DHaluwinRune/received_events"
+                          },
+                          {
+                            "k": "repos_url",
+                            "v": "https://api.github.com/users/DHaluwinRune/repos"
+                          },
+                          {
+                            "k": "site_admin",
+                            "v": false
+                          },
+                          {
+                            "k": "starred_url",
+                            "v": "https://api.github.com/users/DHaluwinRune/starred{/owner}{/repo}"
+                          },
+                          {
+                            "k": "subscriptions_url",
+                            "v": "https://api.github.com/users/DHaluwinRune/subscriptions"
+                          },
+                          {
+                            "k": "type",
+                            "v": "User"
+                          },
+                          {
+                            "k": "url",
+                            "v": "https://api.github.com/users/DHaluwinRune"
+                          },
+                          {
+                            "k": "user_view_type",
+                            "v": "public"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "k": "private",
+                      "v": true
+                    },
+                    {
+                      "k": "pulls_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/pulls{/number}"
+                    },
+                    {
+                      "k": "pushed_at",
+                      "v": 1762424233.0
+                    },
+                    {
+                      "k": "releases_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/releases{/id}"
+                    },
+                    {
+                      "k": "size",
+                      "v": 183734.0
+                    },
+                    {
+                      "k": "ssh_url",
+                      "v": "git@github.com:DHaluwinRune/03-MLOps-GithubActions.git"
+                    },
+                    {
+                      "k": "stargazers",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "stargazers_count",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "stargazers_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/stargazers"
+                    },
+                    {
+                      "k": "statuses_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/statuses/{sha}"
+                    },
+                    {
+                      "k": "subscribers_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/subscribers"
+                    },
+                    {
+                      "k": "subscription_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/subscription"
+                    },
+                    {
+                      "k": "svn_url",
+                      "v": "https://github.com/DHaluwinRune/03-MLOps-GithubActions"
+                    },
+                    {
+                      "k": "tags_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/tags"
+                    },
+                    {
+                      "k": "teams_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/teams"
+                    },
+                    {
+                      "k": "topics",
+                      "v": {
+                        "t": 1
+                      }
+                    },
+                    {
+                      "k": "trees_url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions/git/trees{/sha}"
+                    },
+                    {
+                      "k": "updated_at",
+                      "v": "2025-11-06T10:08:26Z"
+                    },
+                    {
+                      "k": "url",
+                      "v": "https://api.github.com/repos/DHaluwinRune/03-MLOps-GithubActions"
+                    },
+                    {
+                      "k": "visibility",
+                      "v": "private"
+                    },
+                    {
+                      "k": "watchers",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "watchers_count",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "web_commit_signoff_required",
+                      "v": false
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "sender",
+                "v": {
+                  "t": 2,
+                  "d": [
+                    {
+                      "k": "avatar_url",
+                      "v": "https://avatars.githubusercontent.com/u/145713662?v=4"
+                    },
+                    {
+                      "k": "events_url",
+                      "v": "https://api.github.com/users/DHaluwinRune/events{/privacy}"
+                    },
+                    {
+                      "k": "followers_url",
+                      "v": "https://api.github.com/users/DHaluwinRune/followers"
+                    },
+                    {
+                      "k": "following_url",
+                      "v": "https://api.github.com/users/DHaluwinRune/following{/other_user}"
+                    },
+                    {
+                      "k": "gists_url",
+                      "v": "https://api.github.com/users/DHaluwinRune/gists{/gist_id}"
+                    },
+                    {
+                      "k": "gravatar_id",
+                      "v": ""
+                    },
+                    {
+                      "k": "html_url",
+                      "v": "https://github.com/DHaluwinRune"
+                    },
+                    {
+                      "k": "id",
+                      "v": 145713662.0
+                    },
+                    {
+                      "k": "login",
+                      "v": "DHaluwinRune"
+                    },
+                    {
+                      "k": "node_id",
+                      "v": "U_kgDOCK9p_g"
+                    },
+                    {
+                      "k": "organizations_url",
+                      "v": "https://api.github.com/users/DHaluwinRune/orgs"
+                    },
+                    {
+                      "k": "received_events_url",
+                      "v": "https://api.github.com/users/DHaluwinRune/received_events"
+                    },
+                    {
+                      "k": "repos_url",
+                      "v": "https://api.github.com/users/DHaluwinRune/repos"
+                    },
+                    {
+                      "k": "site_admin",
+                      "v": false
+                    },
+                    {
+                      "k": "starred_url",
+                      "v": "https://api.github.com/users/DHaluwinRune/starred{/owner}{/repo}"
+                    },
+                    {
+                      "k": "subscriptions_url",
+                      "v": "https://api.github.com/users/DHaluwinRune/subscriptions"
+                    },
+                    {
+                      "k": "type",
+                      "v": "User"
+                    },
+                    {
+                      "k": "url",
+                      "v": "https://api.github.com/users/DHaluwinRune"
+                    },
+                    {
+                      "k": "user_view_type",
+                      "v": "public"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "k": "workflow_ref",
+          "v": "DHaluwinRune/03-MLOps-GithubActions/.github/workflows/kubernetes-deploy.yml@refs/heads/main"
+        },
+        {
+          "k": "workflow_sha",
+          "v": "b5c7aeb3676a7c4e98476c66742f346e26a6c094"
+        },
+        {
+          "k": "repository_id",
+          "v": "1089629187"
+        },
+        {
+          "k": "triggering_actor",
+          "v": "DHaluwinRune"
+        }
+      ]
+    },
+    "inputs": {
+      "t": 2
+    },
+    "job": {
+      "t": 2,
+      "d": [
+        {
+          "k": "check_run_id",
+          "v": 54675802921.0
+        }
+      ]
+    },
+    "matrix": null,
+    "needs": {
+      "t": 2
+    },
+    "strategy": {
+      "t": 2,
+      "d": [
+        {
+          "k": "fail-fast",
+          "v": true
+        },
+        {
+          "k": "job-index",
+          "v": 0.0
+        },
+        {
+          "k": "job-total",
+          "v": 1.0
+        },
+        {
+          "k": "max-parallel",
+          "v": 1.0
+        }
+      ]
+    },
+    "vars": {
+      "t": 2
+    }
+  },
+  "billingOwnerId": "U_kgDOCK9p_g"
+}
+[2025-11-06 10:17:38Z INFO JobRunner] Job ID f4401d9b-0e44-5243-a44a-052a7bd78e1c
+[2025-11-06 10:17:38Z INFO ConfigurationStore] currentAssemblyLocation: C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin\Runner.Worker.dll
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:38Z INFO ConfigurationStore] binPath: C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:38Z INFO ConfigurationStore] RootFolder: C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:38Z INFO HostContext] Well known config file 'Runner': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\.runner'
+[2025-11-06 10:17:38Z INFO ConfigurationStore] ConfigFilePath: C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\.runner
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:38Z INFO HostContext] Well known config file 'MigratedRunner': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\.runner_migrated'
+[2025-11-06 10:17:38Z INFO ConfigurationStore] MigratedConfigFilePath: C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\.runner_migrated
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:38Z INFO HostContext] Well known config file 'Credentials': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\.credentials'
+[2025-11-06 10:17:38Z INFO ConfigurationStore] CredFilePath: C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\.credentials
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:38Z INFO HostContext] Well known config file 'MigratedCredentials': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\.credentials_migrated'
+[2025-11-06 10:17:38Z INFO ConfigurationStore] MigratedCredFilePath: C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\.credentials_migrated
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:38Z INFO HostContext] Well known config file 'Service': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\.service'
+[2025-11-06 10:17:38Z INFO ConfigurationStore] ServiceConfigFilePath: C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\.service
+[2025-11-06 10:17:38Z INFO ConfigurationStore] Read setting file: 402 chars
+[2025-11-06 10:17:38Z INFO JobRunner] Initializing launch client
+[2025-11-06 10:17:38Z INFO JobServerQueue] Initializing results client
+[2025-11-06 10:17:38Z INFO ResultServer] Creating websocket client ...wss://results-receiver.actions.githubusercontent.com/_ws/ingest.sock
+[2025-11-06 10:17:38Z INFO ResultServer] Attempting to start websocket client with delay 00:00:00.
+[2025-11-06 10:17:38Z INFO JobServerQueue] Start process web console line queue.
+[2025-11-06 10:17:38Z INFO JobServerQueue] Start process file upload queue.
+[2025-11-06 10:17:38Z INFO JobServerQueue] Start results file upload queue.
+[2025-11-06 10:17:38Z INFO JobServerQueue] Starting results-based upload queue...
+[2025-11-06 10:17:38Z INFO JobServerQueue] Start process timeline update queue.
+[2025-11-06 10:17:38Z INFO ExecutionContext] Initializing Job context
+[2025-11-06 10:17:38Z INFO ExecutionContext] Initialize GitHub context
+[2025-11-06 10:17:38Z INFO ExecutionContext] Initialize Env context
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Diag': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Diag': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag'
+[2025-11-06 10:17:38Z INFO JobRunner] Starting the job execution context.
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:17:38Z INFO JobRunner] Validating directory permissions for: 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Tools': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_tool'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Temp': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_temp'
+[2025-11-06 10:17:38Z INFO JobRunner] Getting job extension.
+[2025-11-06 10:17:38Z INFO JobRunner] Initialize job. Getting all job steps.
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Diag': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Diag': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:38Z INFO HostContext] Well known config file 'Credentials': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\.credentials'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:38Z INFO HostContext] Well known config file 'SetupInfo': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\.setup_info'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:17:38Z INFO PipelineDirectoryManager] Loading tracking config if exists: C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_PipelineMapping\DHaluwinRune/03-MLOps-GithubActions\PipelineFolder.json
+[2025-11-06 10:17:38Z INFO PipelineDirectoryManager] Updating job run properties.
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:17:38Z INFO JobExtension] Downloading actions
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Actions': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_actions'
+[2025-11-06 10:17:38Z INFO Worker] Listening for cancel message from the channel.
+[2025-11-06 10:17:38Z INFO Worker] Waiting for the job to complete or for a cancel message from the channel.
+[2025-11-06 10:17:38Z INFO ResultServer] Successfully started websocket client.
+[2025-11-06 10:17:38Z INFO JobServerQueue] Try to append 1 batches web console lines for record '8d8548ad-52b9-498a-b332-c6b9fdc16db7', success rate: 1/1.
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Actions': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_actions'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:17:38Z INFO HostContext] Well known directory 'Actions': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_actions'
+[2025-11-06 10:17:38Z INFO ActionManager] Save archive 'https://api.github.com/repos/actions/checkout/zipball/08eba0b27e820071cde6df949e0beb9ba4906955' into C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_actions\_temp_9314fec0-1ac6-48ad-a21e-67638f6328d9\d18a43d9-fe3d-4c92-b9ff-9f149808138c.zip.
+[2025-11-06 10:17:38Z INFO JobServerQueue] Try to append 1 batches web console lines for record '8d8548ad-52b9-498a-b332-c6b9fdc16db7', success rate: 1/1.
+[2025-11-06 10:17:39Z INFO JobServerQueue] Job timeline record has been updated for the first time.
+[2025-11-06 10:17:39Z INFO ActionManager] Request URL: https://api.github.com/repos/actions/checkout/zipball/08eba0b27e820071cde6df949e0beb9ba4906955 X-GitHub-Request-Id: FA90:31BACA:1B300A:21AB73:690C75C3 Http Status: OK
+[2025-11-06 10:17:39Z INFO ActionManager] Finished getting action repository.
+[2025-11-06 10:17:39Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:39Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:39Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:17:39Z INFO HostContext] Well known directory 'Actions': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_actions'
+[2025-11-06 10:17:39Z INFO ActionManifestManager] Load schema file with definitions: [
+  "null",
+  "boolean",
+  "number",
+  "string",
+  "sequence",
+  "mapping",
+  "any",
+  "action-root",
+  "inputs",
+  "input",
+  "outputs",
+  "output-definition",
+  "runs",
+  "container-runs",
+  "container-runs-args",
+  "container-runs-env",
+  "node-runs",
+  "plugin-runs",
+  "composite-runs",
+  "composite-steps",
+  "composite-step",
+  "run-step",
+  "uses-step",
+  "container-runs-context",
+  "output-value",
+  "input-default-context",
+  "non-empty-string",
+  "string-steps-context",
+  "boolean-steps-context",
+  "step-env",
+  "step-if",
+  "step-with"
+]
+[2025-11-06 10:17:39Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:39Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:39Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:17:39Z INFO HostContext] Well known directory 'Actions': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_actions'
+[2025-11-06 10:17:40Z INFO ActionManifestManager] Loaded action.yml file: {
+  "name": "Checkout",
+  "description": "Checkout a Git repository at a particular version",
+  "inputs": {
+    "type": 2,
+    "map": [
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 4,
+          "col": 3,
+          "lit": "repository"
+        },
+        "value": {
+          "type": 3,
+          "file": 2,
+          "line": 6,
+          "col": 14,
+          "expr": "github.repository"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 7,
+          "col": 3,
+          "lit": "ref"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 12,
+          "col": 3,
+          "lit": "token"
+        },
+        "value": {
+          "type": 3,
+          "file": 2,
+          "line": 24,
+          "col": 14,
+          "expr": "github.token"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 25,
+          "col": 3,
+          "lit": "ssh-key"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 37,
+          "col": 3,
+          "lit": "ssh-known-hosts"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 42,
+          "col": 3,
+          "lit": "ssh-strict"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 47,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 48,
+          "col": 3,
+          "lit": "ssh-user"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 51,
+          "col": 14,
+          "lit": "git"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 52,
+          "col": 3,
+          "lit": "persist-credentials"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 54,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 55,
+          "col": 3,
+          "lit": "path"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 57,
+          "col": 3,
+          "lit": "clean"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 59,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 60,
+          "col": 3,
+          "lit": "filter"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 64,
+          "col": 14,
+          "lit": ""
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 65,
+          "col": 3,
+          "lit": "sparse-checkout"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 69,
+          "col": 14,
+          "lit": ""
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 70,
+          "col": 3,
+          "lit": "sparse-checkout-cone-mode"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 73,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 74,
+          "col": 3,
+          "lit": "fetch-depth"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 76,
+          "col": 14,
+          "lit": "1"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 77,
+          "col": 3,
+          "lit": "fetch-tags"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 79,
+          "col": 14,
+          "lit": "false"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 80,
+          "col": 3,
+          "lit": "show-progress"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 82,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 83,
+          "col": 3,
+          "lit": "lfs"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 85,
+          "col": 14,
+          "lit": "false"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 86,
+          "col": 3,
+          "lit": "submodules"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 94,
+          "col": 14,
+          "lit": "false"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 95,
+          "col": 3,
+          "lit": "set-safe-directory"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 97,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 98,
+          "col": 3,
+          "lit": "github-server-url"
+        },
+        "value": ""
+      }
+    ]
+  },
+  "execution": {
+    "executionType": "nodeJS",
+    "hasPre": false,
+    "hasPost": true,
+    "script": "dist/index.js",
+    "pre": null,
+    "post": "dist/index.js",
+    "nodeVersion": "node20",
+    "cleanupCondition": "always()",
+    "initCondition": "always()"
+  },
+  "deprecated": null
+}
+[2025-11-06 10:17:40Z INFO ActionManager] Action node.js file: dist/index.js, no more preparation.
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Actions': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_actions'
+[2025-11-06 10:17:40Z INFO ActionManager] Load action that reference repository from 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_actions\actions\checkout\v4'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Actions': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_actions'
+[2025-11-06 10:17:40Z INFO ActionManifestManager] Loaded action.yml file: {
+  "name": "Checkout",
+  "description": "Checkout a Git repository at a particular version",
+  "inputs": {
+    "type": 2,
+    "map": [
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 4,
+          "col": 3,
+          "lit": "repository"
+        },
+        "value": {
+          "type": 3,
+          "file": 2,
+          "line": 6,
+          "col": 14,
+          "expr": "github.repository"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 7,
+          "col": 3,
+          "lit": "ref"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 12,
+          "col": 3,
+          "lit": "token"
+        },
+        "value": {
+          "type": 3,
+          "file": 2,
+          "line": 24,
+          "col": 14,
+          "expr": "github.token"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 25,
+          "col": 3,
+          "lit": "ssh-key"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 37,
+          "col": 3,
+          "lit": "ssh-known-hosts"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 42,
+          "col": 3,
+          "lit": "ssh-strict"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 47,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 48,
+          "col": 3,
+          "lit": "ssh-user"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 51,
+          "col": 14,
+          "lit": "git"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 52,
+          "col": 3,
+          "lit": "persist-credentials"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 54,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 55,
+          "col": 3,
+          "lit": "path"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 57,
+          "col": 3,
+          "lit": "clean"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 59,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 60,
+          "col": 3,
+          "lit": "filter"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 64,
+          "col": 14,
+          "lit": ""
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 65,
+          "col": 3,
+          "lit": "sparse-checkout"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 69,
+          "col": 14,
+          "lit": ""
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 70,
+          "col": 3,
+          "lit": "sparse-checkout-cone-mode"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 73,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 74,
+          "col": 3,
+          "lit": "fetch-depth"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 76,
+          "col": 14,
+          "lit": "1"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 77,
+          "col": 3,
+          "lit": "fetch-tags"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 79,
+          "col": 14,
+          "lit": "false"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 80,
+          "col": 3,
+          "lit": "show-progress"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 82,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 83,
+          "col": 3,
+          "lit": "lfs"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 85,
+          "col": 14,
+          "lit": "false"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 86,
+          "col": 3,
+          "lit": "submodules"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 94,
+          "col": 14,
+          "lit": "false"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 95,
+          "col": 3,
+          "lit": "set-safe-directory"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 97,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 98,
+          "col": 3,
+          "lit": "github-server-url"
+        },
+        "value": ""
+      }
+    ]
+  },
+  "execution": {
+    "executionType": "nodeJS",
+    "hasPre": false,
+    "hasPost": true,
+    "script": "dist/index.js",
+    "pre": null,
+    "post": "dist/index.js",
+    "nodeVersion": "node20",
+    "cleanupCondition": "always()",
+    "initCondition": "always()"
+  },
+  "deprecated": null
+}
+[2025-11-06 10:17:40Z INFO ActionManager] Action pre node.js file: N/A.
+[2025-11-06 10:17:40Z INFO ActionManager] Action node.js file: dist/index.js.
+[2025-11-06 10:17:40Z INFO ActionManager] Action post node.js file: dist/index.js.
+[2025-11-06 10:17:40Z INFO JobExtension] Adding .
+[2025-11-06 10:17:40Z INFO JobExtension] Adding .
+[2025-11-06 10:17:40Z INFO JobExtension] Adding .
+[2025-11-06 10:17:40Z INFO JobExtension] Adding .
+[2025-11-06 10:17:40Z INFO JobExtension] Adding .
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Diag': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Diag': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Diag': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Diag': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Diag': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Diag': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Diag': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Diag': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Diag': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Diag': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag'
+[2025-11-06 10:17:40Z INFO JobExtension] Total accessible running process: 283.
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:17:40Z INFO JobExtension] Start checking service connectivity in background.
+[2025-11-06 10:17:40Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "setup_job",
+  "type": "runner",
+  "stage": "Pre",
+  "stepId": "8d8548ad-52b9-498a-b332-c6b9fdc16db7",
+  "result": "succeeded",
+  "errorMessages": [],
+  "executionTimeInSeconds": 2,
+  "startTime": "2025-11-06T10:17:38.227504Z",
+  "finishTime": "2025-11-06T10:17:40.183252Z"
+}.
+[2025-11-06 10:17:40Z INFO JobRunner] Total job steps: 5.
+[2025-11-06 10:17:40Z INFO JobRunner] Run all job steps.
+[2025-11-06 10:17:40Z INFO StepsRunner] Processing step: DisplayName='Check out code repository'
+[2025-11-06 10:17:40Z INFO StepsRunner] Evaluating: success()
+[2025-11-06 10:17:40Z INFO JobServerQueue] Got a step log file to send to results service.
+[2025-11-06 10:17:40Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag\blocks\da12793c-30ed-4e55-b594-d149b8237fac_8d8548ad-52b9-498a-b332-c6b9fdc16db7.1
+[2025-11-06 10:17:40Z INFO StepsRunner] Result: true
+[2025-11-06 10:17:40Z INFO StepsRunner] Starting the step.
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:17:40Z INFO StepsRunner] Which2: 'chcp'
+[2025-11-06 10:17:40Z INFO StepsRunner] Location: 'C:\Windows\system32\chcp.COM'
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper] Starting process:
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper]   File name: 'C:\Windows\system32\chcp.COM'
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper]   Arguments: '65001'
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper]   Working directory: 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper]   Persist current code page: 'True'
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper] Process started with process id 28700, waiting for process exit.
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper] Finished process 28700 with exit code 0, and elapsed time 00:00:00.0151704.
+[2025-11-06 10:17:40Z INFO StepsRunner] Successfully returned to code page 65001 (UTF8)
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Actions': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_actions'
+[2025-11-06 10:17:40Z INFO ActionManager] Load action that reference repository from 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_actions\actions\checkout\v4'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Actions': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_actions'
+[2025-11-06 10:17:40Z INFO ActionManifestManager] Loaded action.yml file: {
+  "name": "Checkout",
+  "description": "Checkout a Git repository at a particular version",
+  "inputs": {
+    "type": 2,
+    "map": [
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 4,
+          "col": 3,
+          "lit": "repository"
+        },
+        "value": {
+          "type": 3,
+          "file": 2,
+          "line": 6,
+          "col": 14,
+          "expr": "github.repository"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 7,
+          "col": 3,
+          "lit": "ref"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 12,
+          "col": 3,
+          "lit": "token"
+        },
+        "value": {
+          "type": 3,
+          "file": 2,
+          "line": 24,
+          "col": 14,
+          "expr": "github.token"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 25,
+          "col": 3,
+          "lit": "ssh-key"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 37,
+          "col": 3,
+          "lit": "ssh-known-hosts"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 42,
+          "col": 3,
+          "lit": "ssh-strict"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 47,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 48,
+          "col": 3,
+          "lit": "ssh-user"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 51,
+          "col": 14,
+          "lit": "git"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 52,
+          "col": 3,
+          "lit": "persist-credentials"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 54,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 55,
+          "col": 3,
+          "lit": "path"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 57,
+          "col": 3,
+          "lit": "clean"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 59,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 60,
+          "col": 3,
+          "lit": "filter"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 64,
+          "col": 14,
+          "lit": ""
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 65,
+          "col": 3,
+          "lit": "sparse-checkout"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 69,
+          "col": 14,
+          "lit": ""
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 70,
+          "col": 3,
+          "lit": "sparse-checkout-cone-mode"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 73,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 74,
+          "col": 3,
+          "lit": "fetch-depth"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 76,
+          "col": 14,
+          "lit": "1"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 77,
+          "col": 3,
+          "lit": "fetch-tags"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 79,
+          "col": 14,
+          "lit": "false"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 80,
+          "col": 3,
+          "lit": "show-progress"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 82,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 83,
+          "col": 3,
+          "lit": "lfs"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 85,
+          "col": 14,
+          "lit": "false"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 86,
+          "col": 3,
+          "lit": "submodules"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 94,
+          "col": 14,
+          "lit": "false"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 95,
+          "col": 3,
+          "lit": "set-safe-directory"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 97,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 98,
+          "col": 3,
+          "lit": "github-server-url"
+        },
+        "value": ""
+      }
+    ]
+  },
+  "execution": {
+    "executionType": "nodeJS",
+    "hasPre": false,
+    "hasPost": true,
+    "script": "dist/index.js",
+    "pre": null,
+    "post": "dist/index.js",
+    "nodeVersion": "node20",
+    "cleanupCondition": "always()",
+    "initCondition": "always()"
+  },
+  "deprecated": null
+}
+[2025-11-06 10:17:40Z INFO ActionManager] Action pre node.js file: N/A.
+[2025-11-06 10:17:40Z INFO ActionManager] Action node.js file: dist/index.js.
+[2025-11-06 10:17:40Z INFO ActionManager] Action post node.js file: dist/index.js.
+[2025-11-06 10:17:40Z INFO ExecutionContext] Reserve record order 7 to 12 for post job actions.
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Diag': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Diag': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Temp': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_temp'
+[2025-11-06 10:17:40Z INFO ExecutionContext] Write event payload to C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_temp\_github_workflow\event.json
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Temp': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_temp'
+[2025-11-06 10:17:40Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IFileCommandExtension'
+[2025-11-06 10:17:40Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.AddPathFileCommand, Runner.Worker
+[2025-11-06 10:17:40Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.SetEnvFileCommand, Runner.Worker
+[2025-11-06 10:17:40Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.CreateStepSummaryCommand, Runner.Worker
+[2025-11-06 10:17:40Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.SaveStateFileCommand, Runner.Worker
+[2025-11-06 10:17:40Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.SetOutputFileCommand, Runner.Worker
+[2025-11-06 10:17:40Z INFO ActionManifestManager] Input 'repository': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 6,
+  "col": 14,
+  "lit": "DHaluwinRune/03-MLOps-GithubActions"
+}
+[2025-11-06 10:17:40Z INFO ActionManifestManager] Input 'ref': default value evaluate result: ""
+[2025-11-06 10:17:40Z INFO ActionManifestManager] Input 'token': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 24,
+  "col": 14,
+  "lit": "***"
+}
+[2025-11-06 10:17:40Z INFO ActionManifestManager] Input 'ssh-key': default value evaluate result: ""
+[2025-11-06 10:17:40Z INFO ActionManifestManager] Input 'ssh-known-hosts': default value evaluate result: ""
+[2025-11-06 10:17:40Z INFO ActionManifestManager] Input 'ssh-strict': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 47,
+  "col": 14,
+  "lit": "true"
+}
+[2025-11-06 10:17:40Z INFO ActionManifestManager] Input 'ssh-user': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 51,
+  "col": 14,
+  "lit": "git"
+}
+[2025-11-06 10:17:40Z INFO ActionManifestManager] Input 'persist-credentials': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 54,
+  "col": 14,
+  "lit": "true"
+}
+[2025-11-06 10:17:40Z INFO ActionManifestManager] Input 'path': default value evaluate result: ""
+[2025-11-06 10:17:40Z INFO ActionManifestManager] Input 'clean': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 59,
+  "col": 14,
+  "lit": "true"
+}
+[2025-11-06 10:17:40Z INFO ActionManifestManager] Input 'filter': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 64,
+  "col": 14,
+  "lit": ""
+}
+[2025-11-06 10:17:40Z INFO ActionManifestManager] Input 'sparse-checkout': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 69,
+  "col": 14,
+  "lit": ""
+}
+[2025-11-06 10:17:40Z INFO ActionManifestManager] Input 'sparse-checkout-cone-mode': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 73,
+  "col": 14,
+  "lit": "true"
+}
+[2025-11-06 10:17:40Z INFO ActionManifestManager] Input 'fetch-depth': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 76,
+  "col": 14,
+  "lit": "1"
+}
+[2025-11-06 10:17:40Z INFO ActionManifestManager] Input 'fetch-tags': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 79,
+  "col": 14,
+  "lit": "false"
+}
+[2025-11-06 10:17:40Z INFO ActionManifestManager] Input 'show-progress': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 82,
+  "col": 14,
+  "lit": "true"
+}
+[2025-11-06 10:17:40Z INFO ActionManifestManager] Input 'lfs': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 85,
+  "col": 14,
+  "lit": "false"
+}
+[2025-11-06 10:17:40Z INFO ActionManifestManager] Input 'submodules': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 94,
+  "col": 14,
+  "lit": "false"
+}
+[2025-11-06 10:17:40Z INFO ActionManifestManager] Input 'set-safe-directory': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 97,
+  "col": 14,
+  "lit": "true"
+}
+[2025-11-06 10:17:40Z INFO ActionManifestManager] Input 'github-server-url': default value evaluate result: ""
+[2025-11-06 10:17:40Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IActionCommandExtension'
+[2025-11-06 10:17:40Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.InternalPluginSetRepoPathCommandExtension, Runner.Worker
+[2025-11-06 10:17:40Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.SetEnvCommandExtension, Runner.Worker
+[2025-11-06 10:17:40Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.SetOutputCommandExtension, Runner.Worker
+[2025-11-06 10:17:40Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.SaveStateCommandExtension, Runner.Worker
+[2025-11-06 10:17:40Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.AddPathCommandExtension, Runner.Worker
+[2025-11-06 10:17:40Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.AddMaskCommandExtension, Runner.Worker
+[2025-11-06 10:17:40Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.AddMatcherCommandExtension, Runner.Worker
+[2025-11-06 10:17:40Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.RemoveMatcherCommandExtension, Runner.Worker
+[2025-11-06 10:17:40Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.WarningCommandExtension, Runner.Worker
+[2025-11-06 10:17:40Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.ErrorCommandExtension, Runner.Worker
+[2025-11-06 10:17:40Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.NoticeCommandExtension, Runner.Worker
+[2025-11-06 10:17:40Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.DebugCommandExtension, Runner.Worker
+[2025-11-06 10:17:40Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.GroupCommandExtension, Runner.Worker
+[2025-11-06 10:17:40Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.EndGroupCommandExtension, Runner.Worker
+[2025-11-06 10:17:40Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.EchoCommandExtension, Runner.Worker
+[2025-11-06 10:17:40Z INFO ActionCommandManager] Register action command extension for command internal-set-repo-path
+[2025-11-06 10:17:40Z INFO ActionCommandManager] Register action command extension for command set-env
+[2025-11-06 10:17:40Z INFO ActionCommandManager] Register action command extension for command set-output
+[2025-11-06 10:17:40Z INFO ActionCommandManager] Register action command extension for command save-state
+[2025-11-06 10:17:40Z INFO ActionCommandManager] Register action command extension for command add-path
+[2025-11-06 10:17:40Z INFO ActionCommandManager] Register action command extension for command add-mask
+[2025-11-06 10:17:40Z INFO ActionCommandManager] Register action command extension for command add-matcher
+[2025-11-06 10:17:40Z INFO ActionCommandManager] Register action command extension for command remove-matcher
+[2025-11-06 10:17:40Z INFO ActionCommandManager] Register action command extension for command warning
+[2025-11-06 10:17:40Z INFO ActionCommandManager] Register action command extension for command error
+[2025-11-06 10:17:40Z INFO ActionCommandManager] Register action command extension for command notice
+[2025-11-06 10:17:40Z INFO ActionCommandManager] Register action command extension for command debug
+[2025-11-06 10:17:40Z INFO ActionCommandManager] Register action command extension for command group
+[2025-11-06 10:17:40Z INFO ActionCommandManager] Register action command extension for command endgroup
+[2025-11-06 10:17:40Z INFO ActionCommandManager] Register action command extension for command echo
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:40Z INFO HostContext] Well known directory 'Externals': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\externals'
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper] Starting process:
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper]   File name: 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\externals\node20\bin\node.exe'
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper]   Arguments: '"C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_actions\actions\checkout\v4\dist/index.js"'
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper]   Working directory: 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\03-MLOps-GithubActions\03-MLOps-GithubActions'
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper]   Encoding web name: utf-8 ; code page: '65001'
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper]   Persist current code page: 'True'
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2025-11-06 10:17:40Z INFO ProcessInvokerWrapper] Process started with process id 28388, waiting for process exit.
+[2025-11-06 10:17:40Z INFO JobServerQueue] Try to append 1 batches web console lines for record '8d8548ad-52b9-498a-b332-c6b9fdc16db7', success rate: 1/1.
+[2025-11-06 10:17:40Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'e7bca269-4d54-4758-87c0-0d26e170b234', success rate: 1/1.
+[2025-11-06 10:17:40Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'e7bca269-4d54-4758-87c0-0d26e170b234', success rate: 1/1.
+[2025-11-06 10:17:40Z INFO AddMaskCommandExtension] Add new secret mask with length of 76
+[2025-11-06 10:17:41Z INFO JobServerQueue] Tried to upload 1 file(s) to results, success rate: 1/1.
+[2025-11-06 10:17:41Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'e7bca269-4d54-4758-87c0-0d26e170b234', success rate: 1/1.
+[2025-11-06 10:17:41Z INFO JobServerQueue] Try to upload 1 log files or attachments, success rate: 1/1.
+[2025-11-06 10:17:42Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'e7bca269-4d54-4758-87c0-0d26e170b234', success rate: 1/1.
+[2025-11-06 10:17:43Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'e7bca269-4d54-4758-87c0-0d26e170b234', success rate: 1/1.
+[2025-11-06 10:17:43Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'e7bca269-4d54-4758-87c0-0d26e170b234', success rate: 1/1.
+[2025-11-06 10:17:43Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'e7bca269-4d54-4758-87c0-0d26e170b234', success rate: 1/1.
+[2025-11-06 10:17:45Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'e7bca269-4d54-4758-87c0-0d26e170b234', success rate: 1/1.
+[2025-11-06 10:17:45Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'e7bca269-4d54-4758-87c0-0d26e170b234', success rate: 1/1.
+[2025-11-06 10:17:46Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'e7bca269-4d54-4758-87c0-0d26e170b234', success rate: 1/1.
+[2025-11-06 10:17:47Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'e7bca269-4d54-4758-87c0-0d26e170b234', success rate: 1/1.
+[2025-11-06 10:17:50Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:17:50Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:17:50Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:18:00Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:18:00Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:18:00Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:18:01Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'e7bca269-4d54-4758-87c0-0d26e170b234', success rate: 1/1.
+[2025-11-06 10:18:02Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'e7bca269-4d54-4758-87c0-0d26e170b234', success rate: 1/1.
+[2025-11-06 10:18:03Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'e7bca269-4d54-4758-87c0-0d26e170b234', success rate: 1/1.
+[2025-11-06 10:18:03Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'e7bca269-4d54-4758-87c0-0d26e170b234', success rate: 1/1.
+[2025-11-06 10:18:03Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'e7bca269-4d54-4758-87c0-0d26e170b234', success rate: 1/1.
+[2025-11-06 10:18:03Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'e7bca269-4d54-4758-87c0-0d26e170b234', success rate: 1/1.
+[2025-11-06 10:18:04Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'e7bca269-4d54-4758-87c0-0d26e170b234', success rate: 1/1.
+[2025-11-06 10:18:04Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'e7bca269-4d54-4758-87c0-0d26e170b234', success rate: 1/1.
+[2025-11-06 10:18:05Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'e7bca269-4d54-4758-87c0-0d26e170b234', success rate: 1/1.
+[2025-11-06 10:18:05Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-11-06 10:18:05Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-11-06 10:18:05Z INFO ProcessInvokerWrapper] Finished process 28388 with exit code 0, and elapsed time 00:00:25.6985843.
+[2025-11-06 10:18:06Z INFO CreateStepSummaryCommand] Step Summary file (C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_temp\_runner_file_commands\step_summary_0be95cbc-e6e7-4dd4-bfdf-b5a813c2da0e) is empty; skipping attachment upload
+[2025-11-06 10:18:06Z INFO StepsRunner] Step result: 
+[2025-11-06 10:18:06Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "actions/checkout",
+  "ref": "v4",
+  "type": "node20",
+  "stage": "Main",
+  "stepId": "e7bca269-4d54-4758-87c0-0d26e170b234",
+  "stepContextName": "__actions_checkout",
+  "hasPreStep": false,
+  "hasPostStep": true,
+  "result": "succeeded",
+  "errorMessages": [
+    "no submodule mapping found in .gitmodules for path 'actions-runner/_work/03-MLOps-GithubActions/03-MLOps-GithubActions'",
+    "Unable to clean or reset the repository. The repository will be recreated instead."
+  ],
+  "executionTimeInSeconds": 26,
+  "startTime": "2025-11-06T10:17:40.1983789Z",
+  "finishTime": "2025-11-06T10:18:06.0084347Z"
+}.
+[2025-11-06 10:18:06Z INFO StepsRunner] No need for updating job result with current step result 'Succeeded'.
+[2025-11-06 10:18:06Z INFO StepsRunner] Current state: job state = ''
+[2025-11-06 10:18:06Z INFO StepsRunner] Processing step: DisplayName='Generate random pod name'
+[2025-11-06 10:18:06Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'e7bca269-4d54-4758-87c0-0d26e170b234', success rate: 1/1.
+[2025-11-06 10:18:06Z INFO StepsRunner] Evaluating: success()
+[2025-11-06 10:18:06Z INFO StepsRunner] Result: true
+[2025-11-06 10:18:06Z INFO StepsRunner] Starting the step.
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:18:06Z INFO StepsRunner] Which2: 'chcp'
+[2025-11-06 10:18:06Z INFO StepsRunner] Location: 'C:\Windows\system32\chcp.COM'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper] Starting process:
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   File name: 'C:\Windows\system32\chcp.COM'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Arguments: '65001'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Working directory: 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Persist current code page: 'True'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper] Process started with process id 26764, waiting for process exit.
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper] Finished process 26764 with exit code 0, and elapsed time 00:00:00.0131111.
+[2025-11-06 10:18:06Z INFO StepsRunner] Successfully returned to code page 65001 (UTF8)
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Temp': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_temp'
+[2025-11-06 10:18:06Z INFO ExecutionContext] Write event payload to C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_temp\_github_workflow\event.json
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Temp': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_temp'
+[2025-11-06 10:18:06Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IFileCommandExtension'
+[2025-11-06 10:18:06Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IActionCommandExtension'
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command internal-set-repo-path
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command set-env
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command set-output
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command save-state
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command add-path
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command add-mask
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command add-matcher
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command remove-matcher
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command warning
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command error
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command notice
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command debug
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command group
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command endgroup
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command echo
+[2025-11-06 10:18:06Z INFO ScriptHandler] Which2: 'powershell'
+[2025-11-06 10:18:06Z INFO ScriptHandler] Location: 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.EXE'
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Temp': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_temp'
+[2025-11-06 10:18:06Z INFO ScriptHandler] Which2: 'powershell'
+[2025-11-06 10:18:06Z INFO ScriptHandler] Location: 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.EXE'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper] Starting process:
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   File name: 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.EXE'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Arguments: '-command ". 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_temp\0427aeb6-aeca-4f1b-818b-c69f293a34c0.ps1'"'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Working directory: 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\03-MLOps-GithubActions\03-MLOps-GithubActions'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Persist current code page: 'True'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper] Process started with process id 18648, waiting for process exit.
+[2025-11-06 10:18:06Z INFO JobServerQueue] Got a step log file to send to results service.
+[2025-11-06 10:18:06Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag\blocks\da12793c-30ed-4e55-b594-d149b8237fac_e7bca269-4d54-4758-87c0-0d26e170b234.1
+[2025-11-06 10:18:06Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'bc378e0f-3ea3-4a11-b5f4-5ee8b7ec2ab7', success rate: 1/1.
+[2025-11-06 10:18:06Z INFO JobServerQueue] Try to upload 1 log files or attachments, success rate: 1/1.
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper] Finished process 18648 with exit code 0, and elapsed time 00:00:00.4044993.
+[2025-11-06 10:18:06Z INFO CreateStepSummaryCommand] Step Summary file (C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_temp\_runner_file_commands\step_summary_e138b555-15d1-42ae-94fa-3254ead41b69) is empty; skipping attachment upload
+[2025-11-06 10:18:06Z INFO StepsRunner] Step result: 
+[2025-11-06 10:18:06Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "powershell",
+  "type": "run",
+  "stage": "Main",
+  "stepId": "bc378e0f-3ea3-4a11-b5f4-5ee8b7ec2ab7",
+  "stepContextName": "random",
+  "result": "succeeded",
+  "errorMessages": [],
+  "executionTimeInSeconds": 1,
+  "startTime": "2025-11-06T10:18:06.0128261Z",
+  "finishTime": "2025-11-06T10:18:06.4967947Z"
+}.
+[2025-11-06 10:18:06Z INFO StepsRunner] No need for updating job result with current step result 'Succeeded'.
+[2025-11-06 10:18:06Z INFO StepsRunner] Current state: job state = ''
+[2025-11-06 10:18:06Z INFO StepsRunner] Processing step: DisplayName='Update pod YAML with random name'
+[2025-11-06 10:18:06Z INFO StepsRunner] Evaluating: success()
+[2025-11-06 10:18:06Z INFO StepsRunner] Result: true
+[2025-11-06 10:18:06Z INFO StepsRunner] Starting the step.
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:18:06Z INFO StepsRunner] Which2: 'chcp'
+[2025-11-06 10:18:06Z INFO StepsRunner] Location: 'C:\Windows\system32\chcp.COM'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper] Starting process:
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   File name: 'C:\Windows\system32\chcp.COM'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Arguments: '65001'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Working directory: 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Persist current code page: 'True'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper] Process started with process id 14764, waiting for process exit.
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper] Finished process 14764 with exit code 0, and elapsed time 00:00:00.0138881.
+[2025-11-06 10:18:06Z INFO StepsRunner] Successfully returned to code page 65001 (UTF8)
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Temp': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_temp'
+[2025-11-06 10:18:06Z INFO ExecutionContext] Write event payload to C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_temp\_github_workflow\event.json
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Temp': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_temp'
+[2025-11-06 10:18:06Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IFileCommandExtension'
+[2025-11-06 10:18:06Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IActionCommandExtension'
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command internal-set-repo-path
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command set-env
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command set-output
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command save-state
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command add-path
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command add-mask
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command add-matcher
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command remove-matcher
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command warning
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command error
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command notice
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command debug
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command group
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command endgroup
+[2025-11-06 10:18:06Z INFO ActionCommandManager] Register action command extension for command echo
+[2025-11-06 10:18:06Z INFO ScriptHandler] Which2: 'pwsh'
+[2025-11-06 10:18:06Z INFO ScriptHandler] pwsh: command not found. Make sure 'pwsh' is installed and its location included in the 'Path' environment variable.
+[2025-11-06 10:18:06Z INFO ScriptHandler] Defaulting to powershell
+[2025-11-06 10:18:06Z INFO ScriptHandler] Which2: 'powershell'
+[2025-11-06 10:18:06Z INFO ScriptHandler] Location: 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.EXE'
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:18:06Z INFO HostContext] Well known directory 'Temp': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_temp'
+[2025-11-06 10:18:06Z INFO ScriptHandler] Which2: 'pwsh'
+[2025-11-06 10:18:06Z INFO ScriptHandler] pwsh: command not found. Make sure 'pwsh' is installed and its location included in the 'Path' environment variable.
+[2025-11-06 10:18:06Z INFO ScriptHandler] Defaulting to powershell
+[2025-11-06 10:18:06Z INFO ScriptHandler] Which2: 'powershell'
+[2025-11-06 10:18:06Z INFO ScriptHandler] Location: 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.EXE'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper] Starting process:
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   File name: 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.EXE'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Arguments: '-command ". 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_temp\aa9ed2c0-799f-411f-9e35-bc3ff1beeb1a.ps1'"'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Working directory: 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\03-MLOps-GithubActions\03-MLOps-GithubActions'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Persist current code page: 'True'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2025-11-06 10:18:06Z INFO ProcessInvokerWrapper] Process started with process id 27080, waiting for process exit.
+[2025-11-06 10:18:06Z INFO JobServerQueue] Tried to upload 1 file(s) to results, success rate: 1/1.
+[2025-11-06 10:18:06Z INFO JobServerQueue] Try to append 1 batches web console lines for record '565040c8-d8d1-4922-b2d9-35d3fd38c9c6', success rate: 1/1.
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper] Finished process 27080 with exit code 1, and elapsed time 00:00:00.6590663.
+[2025-11-06 10:18:07Z INFO CreateStepSummaryCommand] Step Summary file (C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_temp\_runner_file_commands\step_summary_2fa86211-176d-4ed4-bccd-1a4a8646e49b) is empty; skipping attachment upload
+[2025-11-06 10:18:07Z INFO StepsRunner] Step result: Failed
+[2025-11-06 10:18:07Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "powershell",
+  "type": "run",
+  "stage": "Main",
+  "stepId": "565040c8-d8d1-4922-b2d9-35d3fd38c9c6",
+  "stepContextName": "__run",
+  "result": "failed",
+  "errorMessages": [
+    "Process completed with exit code 1."
+  ],
+  "executionTimeInSeconds": 1,
+  "startTime": "2025-11-06T10:18:06.4999224Z",
+  "finishTime": "2025-11-06T10:18:07.244412Z"
+}.
+[2025-11-06 10:18:07Z INFO StepsRunner] Update job result with current step result 'Failed'.
+[2025-11-06 10:18:07Z INFO StepsRunner] Current state: job state = 'Failed'
+[2025-11-06 10:18:07Z INFO StepsRunner] Processing step: DisplayName='Deploy pod to Kubernetes'
+[2025-11-06 10:18:07Z INFO StepsRunner] Evaluating: success()
+[2025-11-06 10:18:07Z INFO StepsRunner] Result: false
+[2025-11-06 10:18:07Z INFO StepsRunner] Skipping step due to condition evaluation.
+[2025-11-06 10:18:07Z INFO StepsRunner] No need for updating job result with current step result 'Skipped'.
+[2025-11-06 10:18:07Z INFO StepsRunner] Current state: job state = 'Failed'
+[2025-11-06 10:18:07Z INFO StepsRunner] Processing step: DisplayName='Check pods in namespace'
+[2025-11-06 10:18:07Z INFO StepsRunner] Evaluating: success()
+[2025-11-06 10:18:07Z INFO StepsRunner] Result: false
+[2025-11-06 10:18:07Z INFO StepsRunner] Skipping step due to condition evaluation.
+[2025-11-06 10:18:07Z INFO StepsRunner] No need for updating job result with current step result 'Skipped'.
+[2025-11-06 10:18:07Z INFO StepsRunner] Current state: job state = 'Failed'
+[2025-11-06 10:18:07Z INFO StepsRunner] Processing step: DisplayName='Post Check out code repository'
+[2025-11-06 10:18:07Z INFO StepsRunner] Evaluating: always()
+[2025-11-06 10:18:07Z INFO StepsRunner] Result: true
+[2025-11-06 10:18:07Z INFO StepsRunner] Starting the step.
+[2025-11-06 10:18:07Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:18:07Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:18:07Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:18:07Z INFO StepsRunner] Which2: 'chcp'
+[2025-11-06 10:18:07Z INFO StepsRunner] Location: 'C:\Windows\system32\chcp.COM'
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper] Starting process:
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper]   File name: 'C:\Windows\system32\chcp.COM'
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper]   Arguments: '65001'
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper]   Working directory: 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper]   Persist current code page: 'True'
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper] Process started with process id 27008, waiting for process exit.
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper] Finished process 27008 with exit code 0, and elapsed time 00:00:00.0138659.
+[2025-11-06 10:18:07Z INFO StepsRunner] Successfully returned to code page 65001 (UTF8)
+[2025-11-06 10:18:07Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:18:07Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:18:07Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:18:07Z INFO HostContext] Well known directory 'Actions': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_actions'
+[2025-11-06 10:18:07Z INFO ActionManager] Load action that reference repository from 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_actions\actions\checkout\v4'
+[2025-11-06 10:18:07Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:18:07Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:18:07Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:18:07Z INFO HostContext] Well known directory 'Actions': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_actions'
+[2025-11-06 10:18:07Z INFO ActionManifestManager] Loaded action.yml file: {
+  "name": "Checkout",
+  "description": "Checkout a Git repository at a particular version",
+  "inputs": {
+    "type": 2,
+    "map": [
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 4,
+          "col": 3,
+          "lit": "repository"
+        },
+        "value": {
+          "type": 3,
+          "file": 2,
+          "line": 6,
+          "col": 14,
+          "expr": "github.repository"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 7,
+          "col": 3,
+          "lit": "ref"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 12,
+          "col": 3,
+          "lit": "token"
+        },
+        "value": {
+          "type": 3,
+          "file": 2,
+          "line": 24,
+          "col": 14,
+          "expr": "github.token"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 25,
+          "col": 3,
+          "lit": "ssh-key"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 37,
+          "col": 3,
+          "lit": "ssh-known-hosts"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 42,
+          "col": 3,
+          "lit": "ssh-strict"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 47,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 48,
+          "col": 3,
+          "lit": "ssh-user"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 51,
+          "col": 14,
+          "lit": "git"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 52,
+          "col": 3,
+          "lit": "persist-credentials"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 54,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 55,
+          "col": 3,
+          "lit": "path"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 57,
+          "col": 3,
+          "lit": "clean"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 59,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 60,
+          "col": 3,
+          "lit": "filter"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 64,
+          "col": 14,
+          "lit": ""
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 65,
+          "col": 3,
+          "lit": "sparse-checkout"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 69,
+          "col": 14,
+          "lit": ""
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 70,
+          "col": 3,
+          "lit": "sparse-checkout-cone-mode"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 73,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 74,
+          "col": 3,
+          "lit": "fetch-depth"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 76,
+          "col": 14,
+          "lit": "1"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 77,
+          "col": 3,
+          "lit": "fetch-tags"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 79,
+          "col": 14,
+          "lit": "false"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 80,
+          "col": 3,
+          "lit": "show-progress"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 82,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 83,
+          "col": 3,
+          "lit": "lfs"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 85,
+          "col": 14,
+          "lit": "false"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 86,
+          "col": 3,
+          "lit": "submodules"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 94,
+          "col": 14,
+          "lit": "false"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 95,
+          "col": 3,
+          "lit": "set-safe-directory"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 97,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 98,
+          "col": 3,
+          "lit": "github-server-url"
+        },
+        "value": ""
+      }
+    ]
+  },
+  "execution": {
+    "executionType": "nodeJS",
+    "hasPre": false,
+    "hasPost": true,
+    "script": "dist/index.js",
+    "pre": null,
+    "post": "dist/index.js",
+    "nodeVersion": "node20",
+    "cleanupCondition": "always()",
+    "initCondition": "always()"
+  },
+  "deprecated": null
+}
+[2025-11-06 10:18:07Z INFO ActionManager] Action pre node.js file: N/A.
+[2025-11-06 10:18:07Z INFO ActionManager] Action node.js file: dist/index.js.
+[2025-11-06 10:18:07Z INFO ActionManager] Action post node.js file: dist/index.js.
+[2025-11-06 10:18:07Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:18:07Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:18:07Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:18:07Z INFO HostContext] Well known directory 'Temp': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_temp'
+[2025-11-06 10:18:07Z INFO ExecutionContext] Write event payload to C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_temp\_github_workflow\event.json
+[2025-11-06 10:18:07Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:18:07Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:18:07Z INFO HostContext] Well known directory 'Work': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work'
+[2025-11-06 10:18:07Z INFO HostContext] Well known directory 'Temp': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_temp'
+[2025-11-06 10:18:07Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IFileCommandExtension'
+[2025-11-06 10:18:07Z INFO ActionManifestManager] Input 'repository': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 6,
+  "col": 14,
+  "lit": "DHaluwinRune/03-MLOps-GithubActions"
+}
+[2025-11-06 10:18:07Z INFO ActionManifestManager] Input 'ref': default value evaluate result: ""
+[2025-11-06 10:18:07Z INFO ActionManifestManager] Input 'token': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 24,
+  "col": 14,
+  "lit": "***"
+}
+[2025-11-06 10:18:07Z INFO ActionManifestManager] Input 'ssh-key': default value evaluate result: ""
+[2025-11-06 10:18:07Z INFO ActionManifestManager] Input 'ssh-known-hosts': default value evaluate result: ""
+[2025-11-06 10:18:07Z INFO ActionManifestManager] Input 'ssh-strict': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 47,
+  "col": 14,
+  "lit": "true"
+}
+[2025-11-06 10:18:07Z INFO ActionManifestManager] Input 'ssh-user': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 51,
+  "col": 14,
+  "lit": "git"
+}
+[2025-11-06 10:18:07Z INFO ActionManifestManager] Input 'persist-credentials': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 54,
+  "col": 14,
+  "lit": "true"
+}
+[2025-11-06 10:18:07Z INFO ActionManifestManager] Input 'path': default value evaluate result: ""
+[2025-11-06 10:18:07Z INFO ActionManifestManager] Input 'clean': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 59,
+  "col": 14,
+  "lit": "true"
+}
+[2025-11-06 10:18:07Z INFO ActionManifestManager] Input 'filter': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 64,
+  "col": 14,
+  "lit": ""
+}
+[2025-11-06 10:18:07Z INFO ActionManifestManager] Input 'sparse-checkout': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 69,
+  "col": 14,
+  "lit": ""
+}
+[2025-11-06 10:18:07Z INFO ActionManifestManager] Input 'sparse-checkout-cone-mode': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 73,
+  "col": 14,
+  "lit": "true"
+}
+[2025-11-06 10:18:07Z INFO ActionManifestManager] Input 'fetch-depth': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 76,
+  "col": 14,
+  "lit": "1"
+}
+[2025-11-06 10:18:07Z INFO ActionManifestManager] Input 'fetch-tags': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 79,
+  "col": 14,
+  "lit": "false"
+}
+[2025-11-06 10:18:07Z INFO ActionManifestManager] Input 'show-progress': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 82,
+  "col": 14,
+  "lit": "true"
+}
+[2025-11-06 10:18:07Z INFO ActionManifestManager] Input 'lfs': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 85,
+  "col": 14,
+  "lit": "false"
+}
+[2025-11-06 10:18:07Z INFO ActionManifestManager] Input 'submodules': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 94,
+  "col": 14,
+  "lit": "false"
+}
+[2025-11-06 10:18:07Z INFO ActionManifestManager] Input 'set-safe-directory': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 97,
+  "col": 14,
+  "lit": "true"
+}
+[2025-11-06 10:18:07Z INFO ActionManifestManager] Input 'github-server-url': default value evaluate result: ""
+[2025-11-06 10:18:07Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IActionCommandExtension'
+[2025-11-06 10:18:07Z INFO ActionCommandManager] Register action command extension for command internal-set-repo-path
+[2025-11-06 10:18:07Z INFO ActionCommandManager] Register action command extension for command set-env
+[2025-11-06 10:18:07Z INFO ActionCommandManager] Register action command extension for command set-output
+[2025-11-06 10:18:07Z INFO ActionCommandManager] Register action command extension for command save-state
+[2025-11-06 10:18:07Z INFO ActionCommandManager] Register action command extension for command add-path
+[2025-11-06 10:18:07Z INFO ActionCommandManager] Register action command extension for command add-mask
+[2025-11-06 10:18:07Z INFO ActionCommandManager] Register action command extension for command add-matcher
+[2025-11-06 10:18:07Z INFO ActionCommandManager] Register action command extension for command remove-matcher
+[2025-11-06 10:18:07Z INFO ActionCommandManager] Register action command extension for command warning
+[2025-11-06 10:18:07Z INFO ActionCommandManager] Register action command extension for command error
+[2025-11-06 10:18:07Z INFO ActionCommandManager] Register action command extension for command notice
+[2025-11-06 10:18:07Z INFO ActionCommandManager] Register action command extension for command debug
+[2025-11-06 10:18:07Z INFO ActionCommandManager] Register action command extension for command group
+[2025-11-06 10:18:07Z INFO ActionCommandManager] Register action command extension for command endgroup
+[2025-11-06 10:18:07Z INFO ActionCommandManager] Register action command extension for command echo
+[2025-11-06 10:18:07Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:18:07Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:18:07Z INFO HostContext] Well known directory 'Externals': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\externals'
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper] Starting process:
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper]   File name: 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\externals\node20\bin\node.exe'
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper]   Arguments: '"C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_actions\actions\checkout\v4\dist/index.js"'
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper]   Working directory: 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\03-MLOps-GithubActions\03-MLOps-GithubActions'
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper]   Encoding web name: utf-8 ; code page: '65001'
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper]   Persist current code page: 'True'
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2025-11-06 10:18:07Z INFO ProcessInvokerWrapper] Process started with process id 28536, waiting for process exit.
+[2025-11-06 10:18:07Z INFO JobServerQueue] Try to append 1 batches web console lines for record '565040c8-d8d1-4922-b2d9-35d3fd38c9c6', success rate: 1/1.
+[2025-11-06 10:18:07Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'defcb40d-fdae-4a5f-8512-f4ccecdebdce', success rate: 1/1.
+[2025-11-06 10:18:07Z INFO JobServerQueue] Try to upload 2 log files or attachments, success rate: 2/2.
+[2025-11-06 10:18:07Z INFO JobServerQueue] Got a step log file to send to results service.
+[2025-11-06 10:18:07Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag\blocks\da12793c-30ed-4e55-b594-d149b8237fac_bc378e0f-3ea3-4a11-b5f4-5ee8b7ec2ab7.1
+[2025-11-06 10:18:07Z INFO AddMaskCommandExtension] Add new secret mask with length of 32
+[2025-11-06 10:18:07Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'defcb40d-fdae-4a5f-8512-f4ccecdebdce', success rate: 1/1.
+[2025-11-06 10:18:08Z INFO JobServerQueue] Got a step log file to send to results service.
+[2025-11-06 10:18:08Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag\blocks\da12793c-30ed-4e55-b594-d149b8237fac_565040c8-d8d1-4922-b2d9-35d3fd38c9c6.1
+[2025-11-06 10:18:08Z INFO JobServerQueue] Tried to upload 2 file(s) to results, success rate: 2/2.
+[2025-11-06 10:18:08Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-11-06 10:18:08Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2025-11-06 10:18:08Z INFO ProcessInvokerWrapper] Finished process 28536 with exit code 0, and elapsed time 00:00:01.5090410.
+[2025-11-06 10:18:08Z INFO CreateStepSummaryCommand] Step Summary file (C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_temp\_runner_file_commands\step_summary_1f4e167d-d0d1-40da-92c3-4d2e466417e9) is empty; skipping attachment upload
+[2025-11-06 10:18:08Z INFO StepsRunner] Step result: 
+[2025-11-06 10:18:08Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "actions/checkout",
+  "ref": "v4",
+  "type": "node20",
+  "stage": "Post",
+  "stepId": "defcb40d-fdae-4a5f-8512-f4ccecdebdce",
+  "result": "succeeded",
+  "errorMessages": [
+    "The process 'C:\\Program Files\\Git\\cmd\\git.exe' failed with exit code 128"
+  ],
+  "executionTimeInSeconds": 2,
+  "startTime": "2025-11-06T10:18:07.2484082Z",
+  "finishTime": "2025-11-06T10:18:08.8058302Z"
+}.
+[2025-11-06 10:18:08Z INFO StepsRunner] No need for updating job result with current step result 'Succeeded'.
+[2025-11-06 10:18:08Z INFO StepsRunner] Current state: job state = 'Failed'
+[2025-11-06 10:18:08Z INFO JobRunner] Finalize job.
+[2025-11-06 10:18:08Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:18:08Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:18:08Z INFO HostContext] Well known directory 'Diag': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag'
+[2025-11-06 10:18:08Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:18:08Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:18:08Z INFO HostContext] Well known directory 'Diag': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag'
+[2025-11-06 10:18:08Z INFO JobExtension] Initialize Env context
+[2025-11-06 10:18:08Z INFO JobExtension] Initialize steps context
+[2025-11-06 10:18:08Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'defcb40d-fdae-4a5f-8512-f4ccecdebdce', success rate: 1/1.
+[2025-11-06 10:18:08Z INFO JobServerQueue] Try to append 1 batches web console lines for record '34c111d5-117b-4952-906b-9d6182fbfc0b', success rate: 1/1.
+[2025-11-06 10:18:08Z INFO JobExtension] Total accessible running process: 282.
+[2025-11-06 10:18:08Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "complete_job",
+  "type": "runner",
+  "stage": "Post",
+  "stepId": "34c111d5-117b-4952-906b-9d6182fbfc0b",
+  "result": "succeeded",
+  "errorMessages": [],
+  "executionTimeInSeconds": 1,
+  "startTime": "2025-11-06T10:18:08.8214733Z",
+  "finishTime": "2025-11-06T10:18:08.8414116Z"
+}.
+[2025-11-06 10:18:08Z INFO JobRunner] Job result after all job steps finish: Failed
+[2025-11-06 10:18:08Z INFO JobRunner] Completing the job execution context.
+[2025-11-06 10:18:08Z INFO JobRunner] Shutting down the job server queue.
+[2025-11-06 10:18:08Z INFO JobServerQueue] Fire signal to shutdown all queues.
+[2025-11-06 10:18:09Z INFO JobServerQueue] All queue process task stopped.
+[2025-11-06 10:18:09Z INFO JobServerQueue] Web console line queue drained.
+[2025-11-06 10:18:09Z INFO JobServerQueue] Uploading 3 files in one shot.
+[2025-11-06 10:18:09Z INFO JobServerQueue] Try to upload 3 log files or attachments, success rate: 3/3.
+[2025-11-06 10:18:09Z INFO JobServerQueue] File upload queue drained.
+[2025-11-06 10:18:09Z INFO JobServerQueue] Starting results-based upload queue...
+[2025-11-06 10:18:09Z INFO JobServerQueue] Uploading 3 file(s) in one shot through results service.
+[2025-11-06 10:18:09Z INFO JobServerQueue] Got a step log file to send to results service.
+[2025-11-06 10:18:09Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag\blocks\da12793c-30ed-4e55-b594-d149b8237fac_defcb40d-fdae-4a5f-8512-f4ccecdebdce.1
+[2025-11-06 10:18:09Z INFO JobServerQueue] Got a step log file to send to results service.
+[2025-11-06 10:18:09Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag\blocks\da12793c-30ed-4e55-b594-d149b8237fac_34c111d5-117b-4952-906b-9d6182fbfc0b.1
+[2025-11-06 10:18:10Z INFO JobServerQueue] Got a job log file to send to results service.
+[2025-11-06 10:18:10Z INFO JobServerQueue] Starting upload of job log file to results service ResultsLog, C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag\blocks\da12793c-30ed-4e55-b594-d149b8237fac_f4401d9b-0e44-5243-a44a-052a7bd78e1c.1
+[2025-11-06 10:18:10Z INFO JobServerQueue] Tried to upload 3 file(s) to results, success rate: 3/3.
+[2025-11-06 10:18:10Z INFO JobServerQueue] Results upload queue drained.
+[2025-11-06 10:18:10Z INFO JobServerQueue] Timeline update queue drained.
+[2025-11-06 10:18:10Z INFO JobServerQueue] Disposing job server ...
+[2025-11-06 10:18:10Z INFO JobServerQueue] Disposing results server ...
+[2025-11-06 10:18:10Z INFO JobServerQueue] All queue process tasks have been stopped, and all queues are drained.
+[2025-11-06 10:18:10Z INFO TempDirectoryManager] Cleaning runner temp folder: C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_work\_temp
+[2025-11-06 10:18:10Z INFO HostContext] Well known directory 'Bin': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\bin'
+[2025-11-06 10:18:10Z INFO HostContext] Well known directory 'Root': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner'
+[2025-11-06 10:18:10Z INFO HostContext] Well known directory 'Diag': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag'
+[2025-11-06 10:18:10Z INFO HostContext] Well known config file 'Telemetry': 'C:\SCHOOL\HOWEST LES\SEM5 MCT\MLOps\Labo\Week5\03-MLOps-GithubActions\actions-runner\_diag\.telemetry'
+[2025-11-06 10:18:10Z INFO JobRunner] Raising job completed against run service
+[2025-11-06 10:18:11Z INFO Worker] Job completed.
