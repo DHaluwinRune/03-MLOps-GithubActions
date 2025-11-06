@@ -16,7 +16,11 @@ jobs:
       
       - name: Generate random pod name
         id: random
-        run: echo "POD_NAME=mypod-$(date +%s)" >> $GITHUB_OUTPUT
+        shell: pwsh
+        run: |
+          $now = Get-Date -UFormat %s
+          echo "POD_NAME=mypod-$now" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+
       
       - name: Update pod YAML with random name
         run: |
