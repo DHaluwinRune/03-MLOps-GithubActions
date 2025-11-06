@@ -1,0 +1,84 @@
+name: Complete CI/CD Pipeline
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: self-hosted
+    permissions:
+      contents: read
+      packages: write
+    
+    steps:
+      - name: Check out code repository
+        uses: actions/checkout@v4
+      
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Extract metadata for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository_owner }}/hello-world-nginx
+          tags: |
+            type=ref,event=branch
+            type=sha,prefix={{branch}}-
+            type=raw,value=latest
+      
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+  
+  deploy-to-kubernetes:
+    runs-on: self-hosted
+    needs: build-and-push
+    
+    steps:
+      - name: Check out code repository
+        uses: actions/checkout@v4
+      
+      - name: Create namespace if not exists
+        run: |
+          kubectl create namespace rune --dry-run=client -o yaml | kubectl apply -f -
+      
+      - name: Deploy using Helm
+        run: |
+          helm upgrade --install hello-world-nginx ./helm-chart --namespace rune --create-namespace --set image.tag=latest --set image.repository=ghcr.io/${{ github.repository_owner }}/hello-world-nginx --wait --timeout 3m
+
+      
+      - name: Verify deployment
+        run: |
+          kubectl rollout status deployment/hello-world-deployment -n rune --timeout=120s
+      
+      - name: Show deployment info
+        run: |
+          echo "=== HELM RELEASES ==="
+          helm list -n rune
+          echo ""
+          echo "=== DEPLOYMENTS ==="
+          kubectl get deployments -n rune
+          echo ""
+          echo "=== PODS ==="
+          kubectl get pods -n rune
+          echo ""
+          echo "=== SERVICES ==="
+          kubectl get services -n rune
+      
+      - name: Test application
+        run: |
+          echo "Testing application on http://localhost:30080"
+          sleep 10
+          curl -f http://localhost:30080 || exit 1
