@@ -81,12 +81,8 @@ jobs:
       
       - name: Deploy using Helm
         run: |
-          helm upgrade --install hello-world-nginx ./helm-chart \
-            --namespace rune \
-            --create-namespace \
-            --set image.tag=latest \
-            --wait \
-            --timeout 2m
+          helm upgrade --install hello-world-nginx ./helm-chart --namespace rune --create-namespace --set image.tag=latest --wait --timeout 2m
+
       
       - name: Check Helm release
         run: |
