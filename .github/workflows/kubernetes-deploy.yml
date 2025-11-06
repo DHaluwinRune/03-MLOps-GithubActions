@@ -1,47 +1,61 @@
-name: Kubernetes Pod Deployment
+name: Kubernetes Deployment
 
 on:
-  workflow_dispatch:  # Handmatig triggeren
+  workflow_dispatch:
   push:
     branches:
       - main
 
 jobs:
   deploy-pod:
-    runs-on: self-hosted  # Gebruik je self-hosted runner
+    runs-on: self-hosted
     
     steps:
-      - name: Check out code
+      - name: Check out code repository
         uses: actions/checkout@v4
-
-      # Genereer een random ID voor de pod naam (Windows Powershell)
-      - name: Generate random ID (Windows)
-        id: random-id
-        shell: powershell
+      
+      - name: Generate random pod name
+        id: random
+        run: echo "POD_NAME=mypod-$(date +%s)" >> $GITHUB_OUTPUT
+      
+      - name: Update pod YAML with random name
         run: |
-          $random = Get-Random
-          $timestamp = [int][double]::Parse((Get-Date -UFormat %s))
-          $random_id = "$timestamp-$random"
-          echo "random_id=$random_id" >> $env:GITHUB_OUTPUT
-          Write-Host "Generated random ID: $random_id"
-
-      # Vervang de placeholder in pod.yaml met random ID (Powershell!)
-      - name: Update pod name with random ID
-        shell: powershell
-        run: |
-          $file = "kubernetes-pod.yaml"
-          $content = Get-Content $file
-          $random_id = "${{ steps.random-id.outputs.random_id }}"
-          $content = $content -replace "PLACEHOLDER", $random_id
-          Set-Content $file $content
-          Get-Content $file
-
-      # Deploy de pod naar Kubernetes
-      - name: Apply Kubernetes Pod
+          sed -i 's/PLACEHOLDER/${{ steps.random.outputs.POD_NAME }}/g' kubernetes-pod.yaml
+      
+      - name: Deploy pod to Kubernetes
         run: |
           kubectl apply -f kubernetes-pod.yaml
-
-      # Controleer de pods in je namespace
+      
       - name: Check pods in namespace
         run: |
           kubectl get pods -n rune
+  
+  deploy-application:
+    runs-on: self-hosted
+    needs: deploy-pod
+    
+    steps:
+      - name: Check out code repository
+        uses: actions/checkout@v4
+      
+      - name: Deploy Deployment to Kubernetes
+        run: |
+          kubectl apply -f kubernetes-deployment.yaml
+      
+      - name: Deploy Service to Kubernetes
+        run: |
+          kubectl apply -f kubernetes-service.yaml
+      
+      - name: Wait for deployment to be ready
+        run: |
+          kubectl rollout status deployment/hello-world-deployment -n rune --timeout=120s
+      
+      - name: Check deployment status
+        run: |
+          kubectl get deployments -n rune
+          kubectl get pods -n rune
+          kubectl get services -n rune
+      
+      - name: Restart deployment to pull latest image
+        run: |
+          kubectl rollout restart deployment/hello-world-deployment -n rune
