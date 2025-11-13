@@ -1,0 +1,33 @@
+name: Azure ML - Test Compute
+
+on:
+  workflow_dispatch:  # handmatig uitvoeren in GitHub UI
+
+jobs:
+  azure-ml-test:
+    runs-on: ubuntu-latest
+
+    env:
+      GROUP: "mlops-rune"
+      WORKSPACE: "rune-mlops-ws"
+      LOCATION: "westeurope"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 1) Login bij Azure met de Service Principal
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # 2) Azure CLI gebruiken om ML compute op te vragen
+      - name: Azure test - Get Compute
+        uses: azure/cli@v2.2.0
+        with:
+          azcliversion: 2.79.0
+          inlineScript: |
+            az extension add --name ml
+            az configure --defaults group=$GROUP workspace=$WORKSPACE location=$LOCATION
+            az ml compute list
